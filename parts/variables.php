@@ -7,5 +7,6 @@
     $site = array();
     $site["title"] = "Movie Company";
     $site["theme-bg"] = "bg-dark";
-    $site["theme-text"] = "text-dark";
+    $site["theme-text-accent"] = "text-dark";
+    $site["theme-text"] = "text-light";
 ?>
