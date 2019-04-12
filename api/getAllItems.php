@@ -4,6 +4,8 @@
  * getAllItems.php | 2019 | Torin, David, Carlos, Q
  * 
  * Returns all the movies with itemTable.
+ * 
+ * CURRENTLY NOT WORKING
  */
 include '../backend/dbConnection.php';
 $conn = getDatabaseConnection("movie");
