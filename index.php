@@ -5,11 +5,11 @@
         <title>Home | <?=$site["title"]?></title>
         <script>
             $(function() {
-                for (let i = 0; i < 4; i++)
-                newMovie("#top-movies", "#", "https://images-na.ssl-images-amazon.com/images/I/A1t8xCe9jwL._SL1500_.jpg");
+                //getAllMovies();
+                for (let i = 1; i < 15; i++) {
+                    getMovieInfoShort(i);
+                }
                 
-                for (let i = 0; i < 4; i++)
-                newMovie("#trending-movies", "#", "https://images.redbox.com/Images/EPC/boxartvertical/207197.jpg");
             });
         </script>
     </head>

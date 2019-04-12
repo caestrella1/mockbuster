@@ -1,1 +1,0 @@
-/**** Functions for communicating with the database ****/
