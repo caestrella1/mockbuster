@@ -31,3 +31,22 @@ Stack trace:
 #0 /home/ubuntu/workspace/MovieRental/backend/populateItemDB.php(28): PDOStatement->execute()
 #1 {main}
   thrown in /home/ubuntu/workspace/MovieRental/backend/populateItemDB.php on line 28
+[12-Apr-2019 05:25:18 UTC] PHP Warning:  include(dbConnection.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/MovieRental/api/getMovie.php on line 8
+[12-Apr-2019 05:25:18 UTC] PHP Stack trace:
+[12-Apr-2019 05:25:18 UTC] PHP   1. {main}() /home/ubuntu/workspace/MovieRental/api/getMovie.php:0
+[12-Apr-2019 05:25:18 UTC] PHP Warning:  include(): Failed opening 'dbConnection.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/MovieRental/api/getMovie.php on line 8
+[12-Apr-2019 05:25:18 UTC] PHP Stack trace:
+[12-Apr-2019 05:25:18 UTC] PHP   1. {main}() /home/ubuntu/workspace/MovieRental/api/getMovie.php:0
+[12-Apr-2019 05:25:18 UTC] PHP Fatal error:  Call to undefined function getDatabaseConnection() in /home/ubuntu/workspace/MovieRental/api/getMovie.php on line 9
+[12-Apr-2019 05:25:18 UTC] PHP Stack trace:
+[12-Apr-2019 05:25:18 UTC] PHP   1. {main}() /home/ubuntu/workspace/MovieRental/api/getMovie.php:0
+[12-Apr-2019 05:25:43 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1' in /home/ubuntu/workspace/MovieRental/api/getMovie.php:16
+Stack trace:
+#0 /home/ubuntu/workspace/MovieRental/api/getMovie.php(16): PDOStatement->execute()
+#1 {main}
+  thrown in /home/ubuntu/workspace/MovieRental/api/getMovie.php on line 16
+[12-Apr-2019 05:27:02 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1' in /home/ubuntu/workspace/MovieRental/api/getMovie.php:16
+Stack trace:
+#0 /home/ubuntu/workspace/MovieRental/api/getMovie.php(16): PDOStatement->execute()
+#1 {main}
+  thrown in /home/ubuntu/workspace/MovieRental/api/getMovie.php on line 16
