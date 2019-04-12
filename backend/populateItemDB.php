@@ -20,7 +20,8 @@ for($i = 0; $i < 1; $i++){
     $rand = $rand + .99;
     // $namedParameters = array();
     // $nameParamters
-    $sql = "INSERT into itemTable ('name', 'description', 'poster', 'backdrop', 'rating', 'price') VALUES ('".$obj['title'] . "', '" .$obj['overview'] . "', '" .$obj['poster_path'] . "', '" .$obj['backdrop_path'] . "', '" .$obj['vote_average'] . "', '" . $rand . "');";
+     $sql = "INSERT INTO `itemTable` (`name`, `description`, `poster`, `backdrop`, `rating`, `price`) VALUES ('".$obj['title'] . "', '" .$obj['overview'] . "', '" .$obj['poster_path'] . "', '" .$obj['backdrop_path'] . "', '" .$obj['vote_average'] . "', '" . $rand . "');";
+    //$sql = "INSERT into itemTable ('name', 'description', 'poster', 'backdrop', 'rating', 'price') VALUES ('".$obj['title'] . "', '" .$obj['overview'] . "', '" .$obj['poster_path'] . "', '" .$obj['backdrop_path'] . "', '" .$obj['vote_average'] . "', '" . $rand . "');";
     // $sql = "INSERT into itemTable ('name', 'description', 'poster', 'backdrop', 'rating', 'price') VALUES ( '$obj["title]', '$obj['overview']', '" .$obj['poster_path'] . "', '" .$obj['backdrop_path'] . "', '" .$obj['vote_average'] . "', " . $rand . ");";
     
     print($sql);
