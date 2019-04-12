@@ -50,3 +50,8 @@ Stack trace:
 #0 /home/ubuntu/workspace/MovieRental/api/getMovie.php(16): PDOStatement->execute()
 #1 {main}
   thrown in /home/ubuntu/workspace/MovieRental/api/getMovie.php on line 16
+[12-Apr-2019 05:35:38 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''itemTable' WHERE 1' at line 1' in /home/ubuntu/workspace/MovieRental/api/getAllItems.php:16
+Stack trace:
+#0 /home/ubuntu/workspace/MovieRental/api/getAllItems.php(16): PDOStatement->execute()
+#1 {main}
+  thrown in /home/ubuntu/workspace/MovieRental/api/getAllItems.php on line 16
