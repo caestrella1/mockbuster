@@ -66,3 +66,53 @@ Stack trace:
 #1 {main}
   thrown in /home/ubuntu/workspace/MovieRental/api/getMovie.php on line 18
 [12-Apr-2019 07:27:53 UTC] PHP Parse error:  syntax error, unexpected '$id' (T_VARIABLE) in /home/ubuntu/workspace/MovieRental/api/deleteItem.php on line 22
+[12-Apr-2019 07:41:16 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'movie.itemId' doesn't exist' in /home/ubuntu/workspace/MovieRental/api/getItemsFromConfirmation.php:19
+Stack trace:
+#0 /home/ubuntu/workspace/MovieRental/api/getItemsFromConfirmation.php(19): PDOStatement->execute()
+#1 {main}
+  thrown in /home/ubuntu/workspace/MovieRental/api/getItemsFromConfirmation.php on line 19
+[12-Apr-2019 07:42:15 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'movie.itemId' doesn't exist' in /home/ubuntu/workspace/MovieRental/api/getItemsFromConfirmation.php:20
+Stack trace:
+#0 /home/ubuntu/workspace/MovieRental/api/getItemsFromConfirmation.php(20): PDOStatement->execute()
+#1 {main}
+  thrown in /home/ubuntu/workspace/MovieRental/api/getItemsFromConfirmation.php on line 20
+[12-Apr-2019 07:49:05 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NATURAL JOIN itemTable GROUP BY conNum' at line 1' in /home/ubuntu/workspace/MovieRental/api/getItemsFromConfirmation.php:19
+Stack trace:
+#0 /home/ubuntu/workspace/MovieRental/api/getItemsFromConfirmation.php(19): PDOStatement->execute()
+#1 {main}
+  thrown in /home/ubuntu/workspace/MovieRental/api/getItemsFromConfirmation.php on line 19
+[12-Apr-2019 07:50:11 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1' in /home/ubuntu/workspace/MovieRental/api/getItemsFromConfirmation.php:20
+Stack trace:
+#0 /home/ubuntu/workspace/MovieRental/api/getItemsFromConfirmation.php(20): PDOStatement->execute()
+#1 {main}
+  thrown in /home/ubuntu/workspace/MovieRental/api/getItemsFromConfirmation.php on line 20
+[12-Apr-2019 07:50:15 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1' in /home/ubuntu/workspace/MovieRental/api/getItemsFromConfirmation.php:20
+Stack trace:
+#0 /home/ubuntu/workspace/MovieRental/api/getItemsFromConfirmation.php(20): PDOStatement->execute()
+#1 {main}
+  thrown in /home/ubuntu/workspace/MovieRental/api/getItemsFromConfirmation.php on line 20
+[12-Apr-2019 07:55:08 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NATURAL JOIN itemTable' at line 1' in /home/ubuntu/workspace/MovieRental/api/getItemsFromConfirmation.php:20
+Stack trace:
+#0 /home/ubuntu/workspace/MovieRental/api/getItemsFromConfirmation.php(20): PDOStatement->execute()
+#1 {main}
+  thrown in /home/ubuntu/workspace/MovieRental/api/getItemsFromConfirmation.php on line 20
+[12-Apr-2019 07:55:53 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NATURAL JOIN itemTable' at line 1' in /home/ubuntu/workspace/MovieRental/api/getItemsFromConfirmation.php:20
+Stack trace:
+#0 /home/ubuntu/workspace/MovieRental/api/getItemsFromConfirmation.php(20): PDOStatement->execute()
+#1 {main}
+  thrown in /home/ubuntu/workspace/MovieRental/api/getItemsFromConfirmation.php on line 20
+[12-Apr-2019 07:56:26 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NATURAL JOIN itemTable GROUP BY conNum' at line 1' in /home/ubuntu/workspace/MovieRental/api/getItemsFromConfirmation.php:20
+Stack trace:
+#0 /home/ubuntu/workspace/MovieRental/api/getItemsFromConfirmation.php(20): PDOStatement->execute()
+#1 {main}
+  thrown in /home/ubuntu/workspace/MovieRental/api/getItemsFromConfirmation.php on line 20
+[12-Apr-2019 07:56:40 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NATURAL JOIN itemTable GROUP BY conNum' at line 1' in /home/ubuntu/workspace/MovieRental/api/getItemsFromConfirmation.php:20
+Stack trace:
+#0 /home/ubuntu/workspace/MovieRental/api/getItemsFromConfirmation.php(20): PDOStatement->execute()
+#1 {main}
+  thrown in /home/ubuntu/workspace/MovieRental/api/getItemsFromConfirmation.php on line 20
+[12-Apr-2019 07:56:52 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NATURAL JOIN itemTable' at line 1' in /home/ubuntu/workspace/MovieRental/api/getItemsFromConfirmation.php:20
+Stack trace:
+#0 /home/ubuntu/workspace/MovieRental/api/getItemsFromConfirmation.php(20): PDOStatement->execute()
+#1 {main}
+  thrown in /home/ubuntu/workspace/MovieRental/api/getItemsFromConfirmation.php on line 20
