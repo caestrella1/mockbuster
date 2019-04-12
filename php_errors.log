@@ -65,3 +65,4 @@ Stack trace:
 #0 /home/ubuntu/workspace/MovieRental/api/getMovie.php(18): PDOStatement->execute()
 #1 {main}
   thrown in /home/ubuntu/workspace/MovieRental/api/getMovie.php on line 18
+[12-Apr-2019 07:27:53 UTC] PHP Parse error:  syntax error, unexpected '$id' (T_VARIABLE) in /home/ubuntu/workspace/MovieRental/api/deleteItem.php on line 22
