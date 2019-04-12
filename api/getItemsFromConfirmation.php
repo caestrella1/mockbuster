@@ -4,7 +4,6 @@
  * 
  * Returns all items purchased in an order specified by conNum.
  * 
- * CURRENTLY NOT WORKING!!!
  */
 include '../backend/dbConnection.php';
 $conn = getDatabaseConnection("movie");
