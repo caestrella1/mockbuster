@@ -6,7 +6,7 @@
         <script>
             $(function() {
                 //getAllMovies();
-                for (let i = 1; i < 15; i++) {
+                for (let i = 1; i < 9; i++) {
                     getMovieInfoShort(i);
                 }
                 
@@ -17,9 +17,12 @@
         <?php include "parts/nav.php" ?>
         
         <main class="container">
-            <h2 class="mt-4">Top Movies</h2>
+            <h2 class="mt-4">Top Rated Movies</h2>
+            <p>Don't know what to watch next? We've got you covered.</p>
             <section id="top-movies" class="row my-4"></section>
-            <h2 class="mt-4">Trending Movies</h2>
+            
+            <h2 class="mt-4">New Releases</h2>
+            <p>Bring home your favorite movie today.</p>
             <section id="trending-movies" class="row my-4"></section>
         </main>
         
