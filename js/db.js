@@ -1,13 +1,24 @@
 /**** Functions for communicating with the database ****/
-/* global $ */
+/* global $, addMoviePoster */
 
-function getAllMovies(n=5) {
+function getAllMovies() {
     $.ajax({
         type: "GET",
         url: "api/getAllItems.php",
         dataType: "json",
         success: function(movies, status) {
-            console.log(movies);
+            // TODO: Implement once getAllItems is working
+        }
+    });
+}
+
+function getTopRatedMovies() {
+    $.ajax({
+        type: "GET",
+        url: "api/getTopRatedMovies.php",
+        dataType: "json",
+        success: function(movies, status) {
+            // TODO: Implement once getTopRatedMovies is working
         }
     });
 }
@@ -22,7 +33,7 @@ function getMovieInfoShort(id) {
             "itemId": id
         },
         success: function(movie, status) {
-            addMoviePoster(id, movie.poster);
+            addMoviePoster(id, movie.name, movie.poster, movie.rating); // adds movie to UI
         }
     });
 }
@@ -62,13 +73,49 @@ function searchMovies(query) {
 }
 
 function deleteMovie(id) {
-    // ask to confirm then execute delete command
+    // ask to confirm, then execute 'delete' command
     let result = confirm("Are you sure you want to delete this item? This action cannot be undone.");
     if (result) {
-        
+        $.ajax({
+            type: "POST",
+            url: "api/deleteItem.php",
+            dataType: "json",
+            data: {
+                "id": id
+            }
+        });
     }
 }
 
-function UpdateMovie(id) {
-    // Send admin to update page
+function addMovie() {
+    $.ajax({
+        type: "GET",
+        url: "api/addItem.php",
+        dataType: "json",
+        data: {
+            "name": $("#name").val(),
+            "description": $("#description").val(),
+            "rating": $("#rating").val(),
+            "poster": $("#poster").val(),
+            "backdrop": $("#backdrop").val(),
+            "price": $("#price").val()
+        }
+    });
+}
+
+function updateMovie(id) {
+    $.ajax({
+        type: "GET",
+        url: "api/updateItem.php",
+        dataType: "json",
+        data: {
+            "id": $("#id").html(),
+            "name": $("#name").val(),
+            "description": $("#description").val(),
+            "rating": $("#rating").val(),
+            "poster": $("#poster").val(),
+            "backdrop": $("#backdrop").val(),
+            "price": $("#price").val()
+        }
+    });
 }
