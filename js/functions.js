@@ -3,19 +3,40 @@
 
 function addMoviePoster(id, name, imgEndpoint, rating) {
     let image = "https://image.tmdb.org/t/p/w500/" + imgEndpoint;
-    rating = parseFloat(rating) / 2.0;
+    rating = (parseFloat(rating) / 2.0).toFixed(1);
     $("#top-movies").append(
         `<div class="col-12 col-lg-3 mb-4">` +
-            `<div class="movie">` +
-                `<div class="movie-poster-container rounded-lg">` +
+            `<div class="movie" onclick="incrementCart()">` +
+                `<div class="movie-poster-container position-relative rounded-lg">` +
                     `<img src="${image}" class="movie-poster card-img" alt="${name} poster">` +
+                    `<div class="badge badge-pill badge-info movie-rating shadow position-absolute mt-2 mr-2">` +
+                        `<span class="rating">${rating}</span><i class="fas fa-star ml-1"></i>` +
+                    `</div>` +
                 `</div>` +
                 `<h5 class="movie-title text-dark mt-2 mb-0">${name}</h5>` +
-                `<i class="fas fa-star mr-1 text-warning"></i><span class="text-dark">${rating}</span>` +
             `</div>` +
         `</div>`
     );
 }
+
+// function addMoviePoster(id, name, imgEndpoint, rating) {
+//     let image = "https://image.tmdb.org/t/p/w500/" + imgEndpoint;
+//     rating = parseFloat(rating) / 2.0;
+//     $("#top-movies").append(
+//         `<div class="col-12 col-lg-6 mb-4">` +
+//             `<div class="card">` +
+//                 `<div class="card-body">` +
+//                     `<div class="col-5">` +
+//                         `<img src="${image}" class="movie-poster card-img" alt="${name} poster">` +
+//                     `</div>` +
+//                     `<div class="col-5">` +
+//                         `<h5 class="movie-title text-dark mt-2 mb-0">${name}</h5>` +
+//                     `</div>` +
+//                 `</div>` +
+//             `</div>` +
+//         `</div>`
+//     );
+// }
 
 function admin_newMovie(url="", img="") {
     $("#all-movies").append(
