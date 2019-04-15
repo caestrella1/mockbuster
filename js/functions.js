@@ -1,12 +1,10 @@
 /**** Functions for manipulating the UI ****/
 /* global $ */
 
-function addMoviePoster(id, name, imgEndpoint, rating) {
-    let image = "https://image.tmdb.org/t/p/w500/" + imgEndpoint;
-    rating = (parseFloat(rating) / 2.0).toFixed(1);
+function addMoviePoster(id, name, image, rating) {
     $("#top-movies").append(
         `<div class="col-12 col-lg-3 mb-4">` +
-            `<div class="movie" onclick="incrementCart()">` +
+            `<a class="movie" href="movie.php?id=${id}">` +
                 `<div class="movie-poster-container position-relative rounded-lg">` +
                     `<img src="${image}" class="movie-poster card-img" alt="${name} poster">` +
                     `<div class="badge badge-pill badge-info movie-rating shadow position-absolute mt-2 mr-2">` +
@@ -14,7 +12,7 @@ function addMoviePoster(id, name, imgEndpoint, rating) {
                     `</div>` +
                 `</div>` +
                 `<h5 class="movie-title text-dark mt-2 mb-0">${name}</h5>` +
-            `</div>` +
+            `</a>` +
         `</div>`
     );
 }

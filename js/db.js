@@ -33,7 +33,9 @@ function getMovieInfoShort(id) {
             "itemId": id
         },
         success: function(movie, status) {
-            addMoviePoster(id, movie.name, movie.poster, movie.rating); // adds movie to UI
+            let imgBase = "https://image.tmdb.org/t/p/w500/";
+            let rating = (parseFloat(movie.rating) / 2.0).toFixed(1);
+            addMoviePoster(id, movie.name, imgBase + movie.poster, rating); // adds movie to UI
         }
     });
 }
@@ -45,15 +47,19 @@ function getMovieInfoSingle(id) {
         url: "api/getMovie.php",
         dataType: "json",
         data: {
-            "id": id
+            "itemId": id
         },
         success: function(movie, status) {
-            $("#movie-name").html(movie.name);
-            $("#movie-desc").html(movie.description);
-            $("#movie-poster").attr("src", movie.poster);
-            $("#movie-backdrop").attr("src", movie.backdrop);
-            $("#movie-rating").html(movie.rating);
-            $("#movie-price").html(movie.price);
+            let imgBasePoster = "https://image.tmdb.org/t/p/w500";
+            let imgBaseBD = "https://image.tmdb.org/t/p/original";
+            $("#title").html(movie.name);
+            $("#desc").html(movie.description);
+            $("#poster").attr("src", imgBasePoster + movie.poster);
+            $("#backdrop").css("background-image", `url(${imgBaseBD + movie.backdrop})`);
+            
+            let rating = (parseFloat(movie.rating) / 2.0).toFixed(1);
+            $("#rating").html(rating + "/5");
+            $("#price").html(movie.price);
         }
     });
 }
