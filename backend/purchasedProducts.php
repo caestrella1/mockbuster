@@ -12,7 +12,7 @@ $jArray = $_POST['hiddenF'];
 //$jArray = "Shazam!";
 $size = sizeof($jArray);
 
-for($i=0; $i>$size; $i++){
+for($i=0; $i<$size; $i++){
     $item = $jArray[$i];
     // $item = $jArray;
     // $sql = "UPDATE itemTable SET productsPurchased = productsPurchased + 1 WHERE name = '".$item."'";
