@@ -10,7 +10,7 @@ $conn = getDatabaseConnection("movie");
 
 $minRating = $_GET['minRating'];
 
-$sql = "SELECT * FROM itemTable WHERE rating >= $minRating";
+$sql = "SELECT * FROM itemTable WHERE rating >= $minRating ORDER BY rating DESC" ;
 
 // print($sql);
 
