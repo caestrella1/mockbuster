@@ -8,8 +8,8 @@
 include 'dbConnection.php';
 $conn = getDatabaseConnection("movie");
 
-// $jArray = $_POST['hiddenF'];
-$jArray = "Shazam!";
+$jArray = $_POST['hiddenF'];
+//$jArray = "Shazam!";
 $size = sizeof($jArray);
 
 for($i=0; $i>$size; $i++){
