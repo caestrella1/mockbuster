@@ -4,8 +4,8 @@ include 'dbConnection.php';
 $conn = getDatabaseConnection("movie");
 
 /** CHANGE BACK TO POST ***** */
-$username = $_GET['username'];
-$password = sha1($_GET['password']);
+$username = $_POST['username'];
+$password = sha1($_POST['password']);
 
 $sql = "SELECT * FROM users WHERE username = :username AND password = :password";
 
@@ -21,8 +21,8 @@ $record = $stmt->fetch(PDO::FETCH_ASSOC); //we are expecting ONLY one record, so
      echo "Username or Password are incorrect!";
  }  else {
     $_SESSION['adminName'] = $record['firstName'] . " " . $record['lastName']; // session variables
-    // header('location: admin.php'); //redirecting to a new file
-    echo "successful login";
+    header('location: admin.php'); //redirecting to a new file
+
 }
 
 ?>

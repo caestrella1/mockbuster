@@ -2,6 +2,8 @@
     /**
      * getMovie.php | 2019 | Torin, David, Carlos, Q
      * 
+     * Params: id-> movie id number
+     * 
      * Returns all info of movie with given movie id.
      */
     
