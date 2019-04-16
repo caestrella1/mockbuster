@@ -5,10 +5,9 @@
         <title>Home | <?=$site["title"]?></title>
         <script>
             $(function() {
-                //getAllMovies();
-                for (let i = 1; i < 9; i++) {
-                    getMovieInfoShort(i);
-                }
+                /* global getTopRatedMovies getRecentMovies */
+                getTopRatedMovies();
+                getRecentMovies();
                 
             });
         </script>
@@ -23,7 +22,7 @@
             
             <h2 class="mt-4">New Releases</h2>
             <p>Bring home your favorite movie today.</p>
-            <section id="trending-movies" class="row my-4"></section>
+            <section id="recent-movies" class="row my-4"></section>
         </main>
         
         <?php include "parts/footer.php" ?>
