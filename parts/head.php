@@ -13,8 +13,8 @@
 <script type="text/javascript" src="js/db.js"></script>
 <script type="text/javascript" src="js/functions.js"></script>
 <script>
-    /* global $, updateCartColor */
+    /* global $, updateCart */
     $(function() {
-       updateCartColor(); 
+       getCart();
     });
 </script>
