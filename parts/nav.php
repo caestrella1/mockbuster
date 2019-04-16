@@ -25,12 +25,21 @@
             </ul>
             
             <div>
-                <button id="cart" class="btn badge-pill btn-block btn-outline-light d-block shadow-sm font-weight-bold">
+                <a href="cart.php"><button id="cart" class="btn badge-pill btn-block btn-outline-light d-block shadow-sm font-weight-bold">
                     <i class="fas fa-shopping-cart mr-2 mr-lg-1"></i>
                     <span class="d-lg-none ">My Cart:</span>
                     <span id="cart-count">0</span>
-                </button>
+                </button></a>
             </div>
         </div>
     </div>
 </nav>
+
+<div id="toast-container" class="d-inline position-fixed mt-5 mx-2 mr-lg-5">
+    <div class="toast bg-info text-light mt-4 mt-lg-5" role="alert" aria-live="polite" aria-atomic="true" data-delay="1500">
+        <div class="toast-body">
+            <i class="fas fa-shopping-cart mr-2 mr-lg-1"></i>
+            Successfully added "<span id="added-toast"></span>" to cart!
+        </div>
+    </div>
+</div>
