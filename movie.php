@@ -21,30 +21,24 @@
                             <div class="movie-poster-container mt-5 mb-3">
                                 <img id="poster" class="card-img movie-poster rounded-lg">
                             </div>
-                            <button class="btn btn-block btn-info rounded-pill font-weight-bold shadow">
+                            <!--<h5 class="text-light text-center mb-3">Price: $<span id="price"></span></h5>-->
+                            <button class="btn btn-block btn-info rounded-pill font-weight-bold shadow" onclick="addToCart(<?=$_GET['id'];?>)">
                                 <i class="fas fa-cart-plus mr-2"></i>Add to Cart
                             </button>
                         </div>
                         <div class="col-12 col-lg-9 my-5 text-light">
                             <h1 id="title" class="display-4"></h1>
-                            <h5 id="rating-container"><span id="rating"></span><i class="fas fa-star ml-2"></i></h5>
-                            <h3 id="desc-title" class="display-4 mt-3">Description</h3>
+                            <h5>
+                                Rating:
+                                <span id="rating" class="text-info"></span>
+                                <i class="fas fa-star ml-2 text-info"></i>
+                            </h5>
+                            <h3 id="desc-title" class="display-4 mt-4">Overview</h3>
                             <p id="desc"></p>
                         </div>
                     </div>
                 </div>
         </section>
-        
-        <!--<main class="container">-->
-        <!--    <div class="row">-->
-        <!--        <div class="col-3">-->
-        <!--            <div class="movie-poster-container">-->
-        <!--                <img id="poster" class="card-img movie-poster rounded-lg">-->
-        <!--            </div>-->
-        <!--        </div>-->
-        <!--    </div>-->
-        <!--    <h1 id="movie-title"></h1>-->
-        <!--</main>-->
         
         <?php include "parts/footer.php" ?>
     </body>
