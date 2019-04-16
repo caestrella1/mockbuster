@@ -1,13 +1,16 @@
 /**** Functions for manipulating the UI ****/
-/* global $ */
+/* global $ localStorage */
 
-function addMoviePoster(id, name, image, rating) {
-    $("#top-movies").append(
+let cart;
+
+/* Add movie poster to home page */
+function addMoviePoster(section, id, name, image, rating) {
+    $(`${section}`).append(
         `<div class="col-12 col-lg-3 mb-4">` +
             `<a class="movie" href="movie.php?id=${id}">` +
                 `<div class="movie-poster-container position-relative rounded-lg">` +
                     `<img src="${image}" class="movie-poster card-img" alt="${name} poster">` +
-                    `<div class="badge badge-pill badge-info movie-rating shadow position-absolute mt-2 mr-2">` +
+                    `<div class="badge badge-pill badge-info movie-rating shadow position-absolute mt-2 mr-2 p-2">` +
                         `<span class="rating">${rating}</span><i class="fas fa-star ml-1"></i>` +
                     `</div>` +
                 `</div>` +
@@ -17,26 +20,8 @@ function addMoviePoster(id, name, image, rating) {
     );
 }
 
-// function addMoviePoster(id, name, imgEndpoint, rating) {
-//     let image = "https://image.tmdb.org/t/p/w500/" + imgEndpoint;
-//     rating = parseFloat(rating) / 2.0;
-//     $("#top-movies").append(
-//         `<div class="col-12 col-lg-6 mb-4">` +
-//             `<div class="card">` +
-//                 `<div class="card-body">` +
-//                     `<div class="col-5">` +
-//                         `<img src="${image}" class="movie-poster card-img" alt="${name} poster">` +
-//                     `</div>` +
-//                     `<div class="col-5">` +
-//                         `<h5 class="movie-title text-dark mt-2 mb-0">${name}</h5>` +
-//                     `</div>` +
-//                 `</div>` +
-//             `</div>` +
-//         `</div>`
-//     );
-// }
-
-function admin_newMovie(url="", img="") {
+/* Admin movie item (not being used yet) */
+function addMovieAdmin(url="", img="") {
     $("#all-movies").append(
         `<div class="col-12 col-lg-3 mb-4">` +
             `<a href="${url}"><div class="movie shadow">` +
@@ -48,11 +33,10 @@ function admin_newMovie(url="", img="") {
     );
 }
 
-/* Updates the color of the cart according to whether or not it's empty */
-function updateCartColor() {
-    let cartCount = parseInt($("#cart-count").html());
+function updateCart() {
+    $("#cart-count").html(cart.length);
     
-    if (cartCount > 0) {
+    if (cart.length > 0) {
         $("#cart").removeClass("btn-outline-light");
         $("#cart").addClass("btn-info");
     }
@@ -62,9 +46,21 @@ function updateCartColor() {
     }
 }
 
-/* DEBUGGING: test function for updateCartColor */
-function incrementCart() {
-    let cartCount = parseInt($("#cart-count").html());
-    $("#cart-count").html(++cartCount);
-    updateCartColor();
+function addToCart(itemID) {
+    cart.push(itemID);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    console.log(cart);
+    updateCart();
+    
+    // Make toast notification using movie title
+    $("#added-toast").html($("#title").html());
+    $(".toast").toast("show");
+}
+
+function getCart() {
+    if (!localStorage.getItem("cart"))
+        cart = new Array();
+    else
+        cart = JSON.parse(localStorage.getItem("cart"));
+    updateCart();
 }
