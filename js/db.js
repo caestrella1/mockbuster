@@ -1,13 +1,18 @@
 /**** Functions for communicating with the database ****/
 /* global $, addMoviePoster */
 
-function getAllMovies() {
+function getRecentMovies() {
     $.ajax({
         type: "GET",
         url: "api/getAllItems.php",
         dataType: "json",
         success: function(movies, status) {
-            // TODO: Implement once getAllItems is working
+            movies.forEach(function(movie, i) {
+                if (i >= 12) return;
+                let imgBase = "https://image.tmdb.org/t/p/w500/";
+                let rating = (parseFloat(movie.rating) / 2.0).toFixed(1);
+                addMoviePoster("#recent-movies", movie.itemId, movie.name, imgBase + movie.poster, rating); // adds movie to UI
+            });
         }
     });
 }
@@ -17,8 +22,14 @@ function getTopRatedMovies() {
         type: "GET",
         url: "api/getTopRatedMovies.php",
         dataType: "json",
+        data: { "minRating": 0 },
         success: function(movies, status) {
-            // TODO: Implement once getTopRatedMovies is working
+            movies.forEach(function(movie, i) {
+                if (i >= 12) return;
+                let imgBase = "https://image.tmdb.org/t/p/w500/";
+                let rating = (parseFloat(movie.rating) / 2.0).toFixed(1);
+                addMoviePoster("#top-movies", movie.itemId, movie.name, imgBase + movie.poster, rating); // adds movie to UI
+            });
         }
     });
 }
