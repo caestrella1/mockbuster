@@ -88,5 +88,6 @@ function appendRowToCartTable(obj){
                 '</td>' +
             '</tr>';
 $("#tableBody").append(str);
+$("#cartResults").show();
 }
 
