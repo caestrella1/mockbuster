@@ -13,9 +13,10 @@
         <?php include "parts/nav.php" ?>
         
         <main class="container">
-            <div class="row">
-                <div class="col-12"></div>
-            </div>
+            <br>
+            <?php include "parts/searchbar.php" ?>
+            
+            <?php include "parts/baseTable.php" ?>
         </main>
         
         <?php include "parts/footer.php" ?>
