@@ -64,7 +64,3 @@ function getCart() {
         cart = JSON.parse(localStorage.getItem("cart"));
     updateCart();
 }
-
-function getConfirmationNumber(conNum){
-    
-}

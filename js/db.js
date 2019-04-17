@@ -136,3 +136,23 @@ function updateMovie(id) {
         }
     });
 }
+
+function getConfirmationNumber(conNum){
+    $.ajax({
+    
+        type: "GET",
+        url: "getItemsFromConfirmation.php",
+        dataType: "json",
+        data: {"conNum": conNum},
+        
+        success: function(data,status) {
+            console.log(data);
+        
+        },
+        
+        complete: function(data, status) { //optional, used for debugging purposes
+            
+        }
+    
+    });//ajax
+}  
