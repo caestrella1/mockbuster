@@ -21,11 +21,12 @@ for($i = 0; $i < $numMovies; $i++){
     $poster = $obj['poster_path'];
     $backdrop = $obj['backdrop_path'];
     $rating = $obj['vote_average'];
+    $year = $obj['release_date'];
     $rand = mt_rand(10, 20);
     $rand = $rand + .99;
-
-    $sql = "INSERT INTO itemTable (name, description, poster, backdrop, rating, price) VALUES ";
-    $sql .= "('$name', '$desc', '$poster', '$backdrop', '$rating', '$rand');";
+print_r($year);
+    $sql = "INSERT INTO itemTable (name, description, poster, backdrop, rating, price, yearReleased) VALUES ";
+    $sql .= "('$name', '$desc', '$poster', '$backdrop', '$rating', '$rand', '$year');";
     // print($sql);
     try {
         $stmt = $conn->prepare($sql);
@@ -38,3 +39,4 @@ for($i = 0; $i < $numMovies; $i++){
     }
 }
 ?>
+
