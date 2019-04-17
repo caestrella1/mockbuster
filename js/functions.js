@@ -64,3 +64,13 @@ function getCart() {
         cart = JSON.parse(localStorage.getItem("cart"));
     updateCart();
 }
+
+// need to fix poster
+function appendRowToCartTable(obj){
+  let str = '<tr class="tableRow">'+
+                '<td> <img src="' + obj["poster"] + '" alt="pic"></td>' +
+                '<td id="artist">' + obj["name"] + '</td>' +
+                '<td id="album">' + obj["price"] + '</td>' +
+            '</tr>';
+    $("#tableBody").append(str);
+}

@@ -14,8 +14,6 @@
         
         <main class="container">
             <br>
-            <?php include "parts/searchbar.php" ?>
-            
             <?php include "parts/baseTable.php" ?>
         </main>
         

@@ -137,16 +137,18 @@ function updateMovie(id) {
     });
 }
 
-function getConfirmationNumber(conNum){
+function addItemToCartPage(itemId){
     $.ajax({
     
         type: "GET",
-        url: "getItemsFromConfirmation.php",
+        url: "getMovie.php",
         dataType: "json",
         data: {"conNum": conNum},
         
         success: function(data,status) {
             console.log(data);
+            $("#tableRow").html("");
+            addRowToCartTable(data);
         
         },
         
