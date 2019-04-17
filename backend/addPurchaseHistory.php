@@ -8,11 +8,19 @@
 include 'dbConnection.php';
 $conn = getDatabaseConnection("movie");
 
-$cArray = $_POST['cart'];
-$conNumber = $_POST['conNum'];
+$cArray = $_GET['cart'];
+$conNumber = $_GET['conNum'];
+// $cArray = "Shazam!";
+// $conNumber = 324;
 $size = sizeof($cArray);
 for($i=0; $i<$size; $i++){
-$sql = "INSERT INTO `orderHistory` (`id`, `conNum`, `itemId`, `timestamp`) VALUES (NULL, '$conNumber', '$cArray[$i]', '')";
+
+$ran = "SELECT price FROM itemTable WHERE name = '$cArray[$i]'";    
+$stmt = $conn->prepare($ran);
+        $stmt->execute();
+$resp = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+$sql = "INSERT INTO `orderHistory` (`id`, `conNum`, `itemId`, `price`) VALUES (NULL, '$conNumber', '$cArray[$i]', '$resp')";
 $stmt = $conn->prepare($sql);
         $stmt->execute();
 }
