@@ -65,6 +65,17 @@ function getCart() {
     updateCart();
 }
 
+function addMoviesToCartPage(){
+    if (!localStorage.getItem("cart"))
+        cart = new Array();
+    else
+        cart = JSON.parse(localStorage.getItem("cart"));
+    
+    for(let i = 0; i < cart.length; i++){
+        addItemToCartPage(cart[i]);
+    }
+}
+
 // need to fix poster
 function appendRowToCartTable(obj){
   let str = '<tr class="tableRow">'+
