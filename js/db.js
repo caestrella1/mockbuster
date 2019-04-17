@@ -146,7 +146,7 @@ function addItemToCartPage(itemId){
         data: {"itemId": itemId},
         
         success: function(data,status) {
-            console.log(data);
+            // console.log(data);
             $("#tableRow").html("");
             appendRowToCartTable(data);
         
