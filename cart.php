@@ -18,5 +18,8 @@
         </main>
         
         <?php include "parts/footer.php" ?>
+        <script>
+            addMoviesToCartPage();
+        </script>
     </body>
 </html>

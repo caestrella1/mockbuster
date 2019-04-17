@@ -79,9 +79,9 @@ function addMoviesToCartPage(){
 // need to fix poster
 function appendRowToCartTable(obj){
   let str = '<tr class="tableRow">'+
-                '<td> <img src="' + obj["poster"] + '" alt="pic"></td>' +
+                '<td> <img src="' + "https://image.tmdb.org/t/p/w500/" + obj["poster"] + '" alt="pic"></td>' +
                 '<td id="artist">' + obj["name"] + '</td>' +
                 '<td id="album">' + obj["price"] + '</td>' +
             '</tr>';
-    $("#tableBody").append(str);
+$("#tableBody").append(str);
 }

@@ -141,14 +141,14 @@ function addItemToCartPage(itemId){
     $.ajax({
     
         type: "GET",
-        url: "getMovie.php",
+        url: "api/getMovie.php",
         dataType: "json",
-        data: {"conNum": conNum},
+        data: {"itemId": itemId},
         
         success: function(data,status) {
             console.log(data);
             $("#tableRow").html("");
-            addRowToCartTable(data);
+            appendRowToCartTable(data);
         
         },
         
