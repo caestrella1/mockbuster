@@ -4,7 +4,8 @@
 let cart;
 
 /* Add movie poster to home page */
-function addMoviePoster(section, id, name, image, rating) {
+function addMoviePoster(section, id, name, image, rating, price) {
+    // console.log(price);
     $(`${section}`).append(
         `<div class="col-12 col-lg-3 mb-4">` +
             `<a class="movie" href="movie.php?id=${id}">` +
@@ -15,6 +16,7 @@ function addMoviePoster(section, id, name, image, rating) {
                     `</div>` +
                 `</div>` +
                 `<h5 class="movie-title text-dark mt-2 mb-0">${name}</h5>` +
+                `<h6 class="text-muted">$${price}</h6>` +
             `</a>` +
         `</div>`
     );

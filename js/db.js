@@ -7,11 +7,11 @@ function getRecentMovies() {
         url: "api/getAllItems.php",
         dataType: "json",
         success: function(movies, status) {
-            movies.forEach(function(movie, i) {
+            movies.forEach(function(m, i) {
                 if (i >= 12) return;
-                let imgBase = "https://image.tmdb.org/t/p/w500/";
-                let rating = (parseFloat(movie.rating) / 2.0).toFixed(1);
-                addMoviePoster("#recent-movies", movie.itemId, movie.name, imgBase + movie.poster, rating); // adds movie to UI
+                let base = "https://image.tmdb.org/t/p/w500/";
+                let rating = (parseFloat(m.rating) / 2.0).toFixed(1);
+                addMoviePoster("#recent-movies", m.itemId, m.name, base + m.poster, rating, m.price); // adds movie to UI
             });
         }
     });
@@ -24,11 +24,11 @@ function getTopRatedMovies() {
         dataType: "json",
         data: { "minRating": 0 },
         success: function(movies, status) {
-            movies.forEach(function(movie, i) {
+            movies.forEach(function(m, i) {
                 if (i >= 12) return;
-                let imgBase = "https://image.tmdb.org/t/p/w500/";
-                let rating = (parseFloat(movie.rating) / 2.0).toFixed(1);
-                addMoviePoster("#top-movies", movie.itemId, movie.name, imgBase + movie.poster, rating); // adds movie to UI
+                let base = "https://image.tmdb.org/t/p/w500/";
+                let rating = (parseFloat(m.rating) / 2.0).toFixed(1);
+                addMoviePoster("#top-movies", m.itemId, m.name, base + m.poster, rating, m.price); // adds movie to UI
             });
         }
     });
@@ -68,9 +68,12 @@ function getMovieInfoSingle(id) {
             $("#poster").attr("src", imgBasePoster + movie.poster);
             $("#backdrop").css("background-image", `url(${imgBaseBD + movie.backdrop})`);
             
+            let date = new Date(movie.yearReleased).toLocaleString('en-us', { month: 'long', day: 'numeric', year: 'numeric' });
+            $("#date").html(date);
+            
             let rating = (parseFloat(movie.rating) / 2.0).toFixed(1);
             $("#rating").html(rating + "/5");
-            $("#price").html(movie.price);
+            $("#buy-movie").html(`Buy for $${movie.price}`);
         }
     });
 }

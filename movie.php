@@ -23,11 +23,12 @@
                             </div>
                             <!--<h5 class="text-light text-center mb-3">Price: $<span id="price"></span></h5>-->
                             <button class="btn btn-block btn-info rounded-pill font-weight-bold shadow" onclick="addToCart(<?=$_GET['id'];?>)">
-                                <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+                                <i class="fas fa-cart-plus mr-2"></i><span id="buy-movie"></span>
                             </button>
                         </div>
                         <div class="col-12 col-lg-9 my-5 text-light">
                             <h1 id="title" class="display-4"></h1>
+                            <h5>Release Date: <span id="date" class="text-info"></span></h5>
                             <h5>
                                 Rating:
                                 <span id="rating" class="text-info"></span>
