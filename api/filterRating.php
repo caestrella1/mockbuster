@@ -1,6 +1,6 @@
 <?php
 /**
- * searchRating.php | 2019 | Torin, David, Carlos, Q
+ * filterRating.php | 2019 | Torin, David, Carlos, Q
  * 
  * Gets int(1-5) selected by user
  * Searches for movies with rating specified and up
