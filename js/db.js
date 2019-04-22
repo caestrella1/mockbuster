@@ -87,8 +87,12 @@ function searchMovies(query) {
         data: {
             "q": query
         },
-        success: function(results) {
-            
+        success: function(movies) {
+            movies.forEach(function(m) {
+                let imgBase = "https://image.tmdb.org/t/p/w500/";
+                let rating = (parseFloat(m.rating) / 2.0).toFixed(1);
+                addMoviePoster(m.id, m.name, imgBase + m.poster, rating); // adds movie to UI
+            }); 
         }
     });
 }
