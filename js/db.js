@@ -1,5 +1,5 @@
 /**** Functions for communicating with the database ****/
-/* global $ cart addMoviePoster updateCart */
+/* global $ addMoviePoster updateCart */
 
 function getRecentMovies() {
     $.ajax({
