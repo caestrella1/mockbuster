@@ -17,8 +17,8 @@
             <?php include "parts/baseTable.php" ?>
             
             <div id="cartResults">
-                <button class="btn btn-primary" id="finalizeCart">Purchase</button>
-                <button class="btn btn-primary" id="clearCart">Clear</button>
+                <button class="btn btn-success" id="finalizeCart">Purchase</button>
+                <button class="btn btn-danger" id="clearCart">Clear</button>
             </div>
 
         </main>
@@ -31,10 +31,11 @@
             
             $("#clearCart").on("click", function(){
                 console.log("clear button clicked");
-                let temp = Array();
-                localStorage.setItem("cart", temp);
+                cart = new Array();
+                localStorage.setItem("cart", cart);
                 $("#tableBody").html("");
                 // doesnt update cart total
+                updateCart();
                 
                 $("#cartResults").hide();
             });

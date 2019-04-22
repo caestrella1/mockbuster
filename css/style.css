@@ -68,3 +68,7 @@ a.movie:hover {
     right: 0;
     z-index: 2000;
 }
+
+.td-poster {
+    width: 3em;
+}
