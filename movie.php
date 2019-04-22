@@ -22,8 +22,8 @@
                                 <img id="poster" class="card-img movie-poster rounded-lg">
                             </div>
                             <!--<h5 class="text-light text-center mb-3">Price: $<span id="price"></span></h5>-->
-                            <button class="btn btn-block btn-info rounded-pill font-weight-bold shadow" onclick="addToCart(<?=$_GET['id'];?>)">
-                                <i class="fas fa-cart-plus mr-2"></i><span id="buy-movie"></span>
+                            <button id="add-cart" class="btn btn-block btn-info rounded-pill font-weight-bold shadow" onclick="cartAction(<?=$_GET['id'];?>)">
+                                <i class="fas fa-cart-plus mr-2"></i><span id="buy-movie">Add to Cart</span>
                             </button>
                         </div>
                         <div class="col-12 col-lg-9 my-5 text-light">

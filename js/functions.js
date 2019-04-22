@@ -35,7 +35,7 @@ function addMovieAdmin(url="", img="") {
     );
 }
 
-function updateCart() {
+function updateCart(itemID=null) {
     $("#cart-count").html(cart.length);
     
     if (cart.length > 0) {
@@ -46,17 +46,57 @@ function updateCart() {
         $("#cart").removeClass("btn-info");
         $("#cart").addClass("btn-outline-light");
     }
+    
+    if (itemID) {
+        if (cart.includes(itemID)) {
+            $("#add-cart").val(1);
+            $("#add-cart i").addClass("fa-minus-circle").removeClass("fa-cart-plus");
+            $("#add-cart").addClass("btn-outline-light").removeClass("btn-info");
+            $("#buy-movie").html(`Remove from Cart`);
+        }
+        else {
+            $("#add-cart").val(0);
+            $("#add-cart i").addClass("fa-cart-plus").removeClass("fa-minus-circle");
+            $("#add-cart").addClass("btn-info").removeClass("btn-outline-light");
+            $("#buy-movie").html(`Add to Cart`);
+        }
+    }
+}
+
+function cartAction(id) {
+    // if value is 1 (true), the item is in the cart and should be removed
+    // if value is 0 (false), the item is NOT in the cart and should be added
+    if ($("#add-cart").val() == 1) removeFromCart(id);
+    else addToCart(id);
 }
 
 function addToCart(itemID) {
     cart.push(itemID);
     localStorage.setItem("cart", JSON.stringify(cart));
     console.log(cart);
-    updateCart();
+    updateCart(itemID);
     
     // Make toast notification using movie title
     $("#added-toast").html($("#title").html());
     $(".toast").toast("show");
+}
+
+function removeFromCart(itemID) {
+    cart.forEach(function(item, i) {
+        if (cart[i] == itemID) {
+            cart.splice(i, 1);
+            return;
+        }
+    });
+    
+    cart = cart;
+    localStorage.setItem("cart", JSON.stringify(cart));
+    console.log(cart);
+    updateCart(itemID);
+    
+    // Make toast notification using movie title
+    // $("#added-toast").html($("#title").html());
+    // $(".toast").toast("show");
 }
 
 function getCart() {

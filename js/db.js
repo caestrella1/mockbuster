@@ -1,5 +1,5 @@
 /**** Functions for communicating with the database ****/
-/* global $, addMoviePoster */
+/* global $ cart addMoviePoster updateCart */
 
 function getRecentMovies() {
     $.ajax({
@@ -73,7 +73,8 @@ function getMovieInfoSingle(id) {
             
             let rating = (parseFloat(movie.rating) / 2.0).toFixed(1);
             $("#rating").html(rating + "/5");
-            $("#buy-movie").html(`Buy for $${movie.price}`);
+            
+            updateCart(id);
         }
     });
 }
