@@ -1,6 +1,6 @@
 <?php
 /**
- * filterRating.php | 2019 | Torin, David, Carlos, Q
+ * searchRating.php | 2019 | Torin, David, Carlos, Q
  * 
  * Gets int(1-5) selected by user
  * Searches for movies with rating specified and up
@@ -12,6 +12,7 @@ include '../backend/dbConnection.php';
 $conn = getDatabaseConnection("movie");
 
 $rating = $_POST['rating'];
+$rating = intval($rating)*2;
 $sql = "SELECT * FROM itemTable WHERE rating>$rating;";
 
 $stmt = $conn->prepare($sql);
