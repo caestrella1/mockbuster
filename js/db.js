@@ -147,6 +147,7 @@ function updateMovie(id) {
 }
 
 function addItemToCartPage(itemId){
+
     $.ajax({
     
         type: "GET",
@@ -155,14 +156,15 @@ function addItemToCartPage(itemId){
         data: {"itemId": itemId},
         
         success: function(data,status) {
-            // console.log(data);
             $("#tableRow").html("");
             appendRowToCartTable(data);
-        
+            // console.log("sum1: ", parseFloat(localStorage.getItem('sum')) );
+            let sum = parseFloat(localStorage.getItem('sum')) + parseFloat(data['price']);
+            localStorage.setItem('sum', sum);
+            $("#finalPrice").html("Price: " + sum);
         },
         
         complete: function(data, status) { //optional, used for debugging purposes
-            
         }
     
     });//ajax

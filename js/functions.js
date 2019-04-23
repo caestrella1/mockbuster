@@ -1,4 +1,4 @@
-/**** Functions for manipulating the UI ****/
+/*** Functions for manipulating the UI ***/
 /* global $ localStorage */
 
 /* Add movie poster to home page */

@@ -62,6 +62,7 @@ function cartAction(itemID) {
 }
 
 function addMoviesToCartPage(){
+    
     if (!localStorage.getItem("cart"))
         cart = new Array();
     else
@@ -70,6 +71,7 @@ function addMoviesToCartPage(){
     for(let i = 0; i < cart.length; i++){
         addItemToCartPage(cart[i]);
     }
+    // console.log(sum);
 }
 
 // need to fix poster
