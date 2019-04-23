@@ -161,7 +161,7 @@ function addItemToCartPage(itemId){
             // console.log("sum1: ", parseFloat(localStorage.getItem('sum')) );
             let sum = parseFloat(localStorage.getItem('sum')) + parseFloat(data['price']);
             localStorage.setItem('sum', sum);
-            $("#finalPrice").html("Price: " + sum);
+            $("#finalPrice").html("Price: $" + sum.toFixed(2));
         },
         
         complete: function(data, status) { //optional, used for debugging purposes
