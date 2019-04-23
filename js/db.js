@@ -79,19 +79,20 @@ function getMovieInfoSingle(id) {
     });
 }
 
-function searchMovies(query) {
+function searchMovies() {
     $.ajax({
-        type: "GET",
-        url: "api/search.php",
+        method: "POST",
+        url: "api/searchPhrase.php",
         dataType: "json",
         data: {
-            "q": query
+            "phrase": $("#input-search").val()
         },
         success: function(movies) {
+            $("#search-results").html("");
             movies.forEach(function(m) {
                 let imgBase = "https://image.tmdb.org/t/p/w500/";
                 let rating = (parseFloat(m.rating) / 2.0).toFixed(1);
-                addMoviePoster(m.id, m.name, imgBase + m.poster, rating); // adds movie to UI
+                addMoviePoster("#search-results", m.itemId, m.name, imgBase + m.poster, rating, m.price); // adds movie to UI
             }); 
         }
     });

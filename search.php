@@ -8,7 +8,7 @@
             $(function() {
                 $("#btn-search").on("click", function(e) {
                     e.preventDefault();
-                //   searchMovies($("#input-search").val());
+                    searchMovies();
                 });
             });
         </script>
@@ -21,12 +21,12 @@
                 <div class="col-12 col-lg-8 mx-auto">
                     
                     <h2 class="mt-4">Search All Movies</h2>
-                    <div class="input-group mb-3">
-                        <input id="input-search" type="text" class="form-control" placeholder="Search all movies...">
+                    <form class="input-group mb-3">
+                        <input id="input-search" type="text" name="phrase" class="form-control" placeholder="Search all movies...">
                         <div class="input-group-append">
                             <button id="btn-search" class="btn btn-info" type="submit">Search</button>
                         </div>
-                    </div>
+                    </form>
                     
                 </div>
             </div>
@@ -64,6 +64,9 @@
                     </div>
                 </div>
             </div>
+            
+            <div id="search-results" class="row mt-2"></div>
+            
         </main>
         
         <?php include "parts/footer.php" ?>
