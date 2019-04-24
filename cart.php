@@ -34,7 +34,7 @@
             addMoviesToCartPage();
             console.log("temp2: " + temp);
             
-            $("#finalPrice").html("Price: " + temp);
+            $("#finalPrice").html("Price: $" + temp);
             
             $("#clearCart").on("click", function(){
                 console.log("clear button clicked");
@@ -48,16 +48,40 @@
             });
             
             $("#finalizeCart").on("click", function(){
-                    // let confirmation = rand();
+                    let confirmation = parseInt(Math.random() * 1000000) + 1;
+                    let sum = localStorage.getItem('sum');
                     if (!localStorage.getItem("cart"))
                         cart = new Array();
                     else
                         cart = JSON.parse(localStorage.getItem("cart"));
                     
                     for(let i = 0; i < cart.length; i++){
-                        console.log(cart[i]);
-                        addItemToCartPage(cart[i]);
+                        // console.log(cart[i]);
+                        $.ajax({
+
+                            type: "GET",
+                            url: "api/addItemToOrder.php",
+                            dataType: "json",
+                            data: { 
+                                "id": cart[i], 
+                                "conNum" : confirmation,
+                            },
+                            
+                            success: function(data,status) {
+                                console.log(status);
+                            
+                            },
+                            
+                            complete: function(data,status) { //optional, used for debugging purposes
+                                //alert(status);
+                            }
+                        
+                        });//ajax
                     }
+                    $("#tableBody").html("");
+                    $("#tableBody").html("Success! Your order went through<br>Confirmation Number: " + confirmation);
+                    $("#finalPrice").html("Price: $" + temp);
+                    localStorage.setItem("cart", new Array());
             });
 
         </script>
