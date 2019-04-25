@@ -170,6 +170,4 @@ function addItemToCartPage(itemId){
         }
     
     });//ajax
-    
-    
 }  
