@@ -39,9 +39,9 @@
                         <div class="col-12 col-lg-4">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <label class="input-group-text" for="inputGroupSelect01">Price</label>
+                                    <label class="input-group-text" for="filter-price">Price</label>
                                 </div>
-                                <select class="custom-select" id="inputGroupSelect01">
+                                <select class="custom-select" id="filter-price">
                                     <option selected disabled>Choose...</option>
                                     <option value="0">Low to High</option>
                                     <option value="1">High to Low</option>

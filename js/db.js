@@ -82,10 +82,12 @@ function getMovieInfoSingle(id) {
 function searchMovies() {
     $.ajax({
         method: "POST",
-        url: "api/searchPhrase.php",
+        url: "api/filterAll.php",
         dataType: "json",
         data: {
-            "phrase": $("#input-search").val()
+            "phrase": $("#input-search").val(),
+            "rating": $("#filter-stars").val(),
+            "price": $("input[name=filter-price]").val()
         },
         success: function(movies) {
             $("#search-results").html("");
