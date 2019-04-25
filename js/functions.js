@@ -31,3 +31,4 @@ function addMovieAdmin(url="", img="") {
         `</div>`
     );
 }
+

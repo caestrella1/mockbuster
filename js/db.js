@@ -168,4 +168,6 @@ function addItemToCartPage(itemId){
         }
     
     });//ajax
+    
+    
 }  
