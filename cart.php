@@ -28,7 +28,6 @@
             $("#cartResults").hide();
             localStorage.setItem("sum", "0");
             let temp = localStorage.getItem('sum');
-            console.log("temp1: " + temp);
             
             
             addMoviesToCartPage();
@@ -82,6 +81,25 @@
                     $("#tableBody").html("Success! Your order went through<br>Confirmation Number: " + confirmation);
                     $("#finalPrice").html("Price: $" + temp);
                     localStorage.setItem("cart", new Array());
+            });
+
+            $(document).on("click", "#remove", function() {
+                console.log('button clicked');
+            	console.log($(this).val());
+            	
+            	// this will only be called when the cart is at least length 1
+            	// so no need to checkif cart is null
+            	console.log(JSON.parse(localStorage.getItem("cart")));
+            	let cart = JSON.parse(localStorage.getItem("cart"));
+            	let temp = new Array();
+            	for(let i = 0; i < cart.length; i++){
+            	    if(cart[i] != $(this).val())
+            	        temp.push(cart[i]);
+            	}
+            // 	console.log("temp: " + temp);
+            	localStorage.setItem("cart", JSON.stringify(temp));
+            	console.log(JSON.parse(localStorage.getItem("cart")));
+            	location.reload(); //redirecting to a new file
             });
 
         </script>
