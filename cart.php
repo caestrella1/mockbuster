@@ -19,7 +19,16 @@
             <div id="cartResults">
                 <button class="btn btn-success" id="finalizeCart">Purchase</button>
                 <button class="btn btn-danger" id="clearCart">Clear</button>
+                <span id="promoField">
+                    Promo Code: <input type="text" id="input">
+                    <button class="btn btn-success" id="applyPromo">Apply Promo</button>
+                    <span id="promoOut"></span>
+                        
+                </span><br>
+                
                 <div id="finalPrice"></div>
+                
+                
             </div>
         </main>
         
@@ -82,6 +91,44 @@
                     $("#finalPrice").html("Price: $" + temp);
                     localStorage.setItem("cart", new Array());
             });
+    
+            $("#applyPromo").on('click', function(){
+                console.log('promo button clicked');
+                let code = $("#input").val();
+                
+                $.ajax({
+
+                    type: "GET",
+                    url: "api/getPromoCode.php",
+                    dataType: "json",
+                    data: {"code": code},
+                    
+                    success: function(data,status) {
+                        console.log("data: " + data['discount']);
+                        if(data['discount'] == 0.0){
+                            $("#promoOut").html("Invalid Promo Code!");
+                        }
+                        else {
+                            let temp = data['discount'] * 100;
+                            $("#promoOut").html("Success! " + temp + "% discount applied!");
+                            let sum = parseFloat(localStorage.getItem('sum'));
+                            let newPrice = sum - (sum * data['discount']);
+                            localStorage.setItem('sum', newPrice);
+                            $("#finalPrice").html("Price: $" + newPrice);
+                        }
+                    
+                    },
+                    
+                    complete: function(data,status) { //optional, used for debugging purposes
+                        //alert(status);
+                    }
+                
+                });//ajax
+                
+                
+                
+            });
+
 
             $(document).on("click", "#remove", function() {
                 console.log('button clicked');
