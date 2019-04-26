@@ -18,7 +18,7 @@ $phrase = $_POST['phrase'];
 $rating = $_POST['rating'] * 2;
 $price = $_POST['price'];
 
-if($price=0){
+if($price==0){
     $order="ASC";
 }else{
     $order="DESC";
