@@ -129,7 +129,6 @@
                 
             });
 
-
             $(document).on("click", "#remove", function() {
                 console.log('button clicked');
             	console.log($(this).val());
