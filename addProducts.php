@@ -8,7 +8,7 @@
         <?php include "parts/nav.php" ?>
         <h2>Add New Prodcuts</h2>
         
-        <form>
+        <!--<form>-->
             Name: <br>
             <input type="text" id="name">
             <br>
@@ -27,11 +27,12 @@
             Price:<br>
             <input type="text" id="price">
             <br><br>
-            <input type="submit">
-        </form>
+            <input type="submit" id="submit">
+        <!--</form>-->
         <?php include "parts/footer.php" ?>
         <script>
             $("#submit").on("click", function(){
+                console.log($("#name").val());
                 $.ajax({
 
                     type: "GET",
@@ -53,8 +54,9 @@
                     
                     complete: function(data,status) { //optional, used for debugging purposes
                         //alert(status);
+                        console.log(status);
                         //go back to admin page 
-                        window.location = "admin.php";
+                        // window.location = "admin.php";
                     }
                 
                 });//ajax
