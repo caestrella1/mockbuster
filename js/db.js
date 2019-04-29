@@ -80,14 +80,15 @@ function getMovieInfoSingle(id) {
 }
 
 function searchMovies() {
+    console.log(`Price: ${$("#filter-price").val()}`);
     $.ajax({
         method: "POST",
         url: "api/filterAll.php",
         dataType: "json",
         data: {
             "phrase": $("#input-search").val(),
-            "rating": $("#filter-stars").val(),
-            "price": $("input[name=filter-price]").val()
+            "rating": $(".active [name='filter-stars']").val(),
+            "price": $("#filter-price").val()
         },
         success: function(movies) {
             $("#search-results").html("");
