@@ -15,8 +15,8 @@ $conn = getDatabaseConnection("movie");
 // $price = 0;
 
 $phrase = $_POST['phrase'];
-$rating = $_POST['rating'] * 2;
-$price = $_POST['price'];
+$rating = intval($_POST['rating']) * 2;
+$price = intval($_POST['price']);
 
 if($price==0){
     $order="ASC";
