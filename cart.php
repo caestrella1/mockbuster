@@ -4,7 +4,26 @@
         <?php include "parts/head.php" ?>
         <title>Cart | <?=$site["title"]?></title>
         <script>
+            /* global $ localStorage cart showCartItems completePurchase removeItem clearCart updateCartTotal */
             $(function() {
+                getCartPage();
+                
+                let str = "";
+                if (cart.length > 1) str = `${cart.length} Movies`;
+                else str = `${cart.length} Movie`;
+                $("#cart-item-count, #summary-count").html(str);
+                
+                /* Button Interaction */
+                
+                $(document).on("click", "#remove", function() {
+                    removeItem($(this));
+                });
+                
+                $("#clearCart").on("click", function(){
+                    clearCart();
+                    $("#cartResults").hide();
+                });
+                
                 
             });
         </script>
@@ -13,141 +32,76 @@
         <?php include "parts/nav.php" ?>
         
         <main class="container">
-            <br>
-            <?php include "parts/baseTable.php" ?>
             
-            <div id="cartResults">
-                <button class="btn btn-success" id="finalizeCart">Purchase</button>
-                <button class="btn btn-danger" id="clearCart">Clear</button>
-                <span id="promoField">
-                    Promo Code: <input type="text" id="input">
-                    <button class="btn btn-success" id="applyPromo">Apply Promo</button>
-                    <span id="promoOut"></span>
-                        
-                </span><br>
-                
-                <div id="finalPrice"></div>
-                
-                
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="mt-4">Shopping Cart</h2>
+                    <h4 id="cart-item-count" class="mb-4 text-info"></h4>
+                </div>
             </div>
+            
+            <div class="row">
+                <div class="col-12 col-lg-8">
+                    
+                    <div class="text-right">
+                        <button class="btn btn-sm btn-danger" id="clearCart">Empty Cart</button>
+                    </div>
+
+                    <table class="table table-hover table-borderless" id="table">
+                        <tbody id="tableBody"></tbody>
+                    </table>
+                    
+                    
+                </div><!-- col-8 -->
+                
+                <div class="col-12 col-lg-4">
+                    
+                    
+                    <div class="card mb-5 movie-poster-container">
+                        <div class="card-body">
+                            <h2 class="mb-0">Checkout</h2>
+                            
+                            <h5 id="summary-count" class="text-info mb-2"></h5>
+                            
+                            <div id="cartResults">
+                                <h5>Promo Code</h5>
+                                <div class="input-group mb-2">
+                                    <input id="promo-input" type="text" class="form-control" placeholder="Enter a promo code">
+                                    <div class="input-group-append">
+                                        <button id="applyPromo" class="btn btn-success" type="button" onclick="applyDiscount()">Apply</button>
+                                    </div>
+                                </div>
+                                <div id="promoOut" class="mb-4"></div>
+                            </div>
+                            
+                            <div id="prices">
+                                
+                                <div class="d-flex justify-content-between text-muted">
+                                    <h5>Subtotal</h5>
+                                    <h5 id="subtotal">$0.00</h5>
+                                </div>
+                                
+                                <div id="discount-field" class="d-none justify-content-between text-info">
+                                    <h5>Discount</h5>
+                                    <h5>-$<span id="discount"></span></h5>
+                                </div>
+                                
+                                <div class="d-flex justify-content-between">
+                                    <h4>Grand Total</h4>
+                                    <h4 id="finalPrice"></h4>
+                                </div>
+
+                                <button class="btn btn-success btn-block mt-2" id="finalizeCart" onclick="completePurchase()">Complete Purchase</button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div><!-- row -->
+            
         </main>
         
         <?php include "parts/footer.php" ?>
-        <script>
-            $("#cartResults").hide();
-            localStorage.setItem("sum", "0");
-            let temp = localStorage.getItem('sum');
-            
-            
-            addMoviesToCartPage();
-            console.log("temp2: " + temp);
-            
-            $("#finalPrice").html("Price: $" + temp);
-            
-            $("#clearCart").on("click", function(){
-                console.log("clear button clicked");
-                cart = new Array();
-                localStorage.setItem("cart", cart);
-                $("#tableBody").html("");
-                // doesnt update cart total
-                updateCart();
-                
-                $("#cartResults").hide();
-            });
-            
-            $("#finalizeCart").on("click", function(){
-                    let confirmation = parseInt(Math.random() * 1000000) + 1;
-                    let sum = localStorage.getItem('sum');
-                    if (!localStorage.getItem("cart"))
-                        cart = new Array();
-                    else
-                        cart = JSON.parse(localStorage.getItem("cart"));
-                    
-                    for(let i = 0; i < cart.length; i++){
-                        // console.log(cart[i]);
-                        $.ajax({
-
-                            type: "GET",
-                            url: "api/addItemToOrder.php",
-                            dataType: "json",
-                            data: { 
-                                "id": cart[i], 
-                                "conNum" : confirmation,
-                            },
-                            
-                            success: function(data,status) {
-                                console.log(status);
-                            
-                            },
-                            
-                            complete: function(data,status) { //optional, used for debugging purposes
-                                //alert(status);
-                            }
-                        
-                        });//ajax
-                    }
-                    $("#tableBody").html("");
-                    $("#tableBody").html("Success! Your order went through<br>Confirmation Number: " + confirmation);
-                    $("#finalPrice").html("Price: $" + temp);
-                    localStorage.setItem("cart", new Array());
-            });
-    
-            $("#applyPromo").on('click', function(){
-                console.log('promo button clicked');
-                let code = $("#input").val();
-                
-                $.ajax({
-
-                    type: "GET",
-                    url: "api/getPromoCode.php",
-                    dataType: "json",
-                    data: {"code": code},
-                    
-                    success: function(data,status) {
-                        console.log("data: " + data['discount']);
-                        if(data['discount'] == 0.0){
-                            $("#promoOut").html("Invalid Promo Code!");
-                        }
-                        else {
-                            let temp = data['discount'] * 100;
-                            $("#promoOut").html("Success! " + temp + "% discount applied!");
-                            let sum = parseFloat(localStorage.getItem('sum'));
-                            let newPrice = sum - (sum * data['discount']);
-                            localStorage.setItem('sum', newPrice);
-                            $("#finalPrice").html("Price: $" + newPrice);
-                        }
-                    
-                    },
-                    
-                    complete: function(data,status) { //optional, used for debugging purposes
-                        //alert(status);
-                    }
-                
-                });//ajax
-                
-                
-                
-            });
-
-            $(document).on("click", "#remove", function() {
-                console.log('button clicked');
-            	console.log($(this).val());
-            	
-            	// this will only be called when the cart is at least length 1
-            	// so no need to checkif cart is null
-            	console.log(JSON.parse(localStorage.getItem("cart")));
-            	let cart = JSON.parse(localStorage.getItem("cart"));
-            	let temp = new Array();
-            	for(let i = 0; i < cart.length; i++){
-            	    if(cart[i] != $(this).val())
-            	        temp.push(cart[i]);
-            	}
-            // 	console.log("temp: " + temp);
-            	localStorage.setItem("cart", JSON.stringify(temp));
-            	console.log(JSON.parse(localStorage.getItem("cart")));
-            	location.reload(); //redirecting to a new file
-            });
-
-        </script>
     </body>
 </html>

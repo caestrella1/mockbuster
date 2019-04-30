@@ -1,5 +1,5 @@
 /**** Functions for communicating with the database ****/
-/* global $ addMoviePoster updateCart */
+/* global $ addMoviePoster updateCart localStorage */
 
 function getRecentMovies() {
     $.ajax({
@@ -149,26 +149,25 @@ function updateMovie(id) {
     });
 }
 
-function addItemToCartPage(itemId){
+/* Cart Page */
 
+function addItemToCartPage(itemId) {
     $.ajax({
-    
         type: "GET",
         url: "api/getMovie.php",
         dataType: "json",
         data: {"itemId": itemId},
-        
-        success: function(data,status) {
+        success: function(data, status) {
             $("#tableRow").html("");
             appendRowToCartTable(data);
-            // console.log("sum1: ", parseFloat(localStorage.getItem('sum')) );
-            let sum = parseFloat(localStorage.getItem('sum')) + parseFloat(data['price']);
-            localStorage.setItem('sum', sum);
-            $("#finalPrice").html("Price: $" + sum.toFixed(2));
-        },
-        
-        complete: function(data, status) { //optional, used for debugging purposes
+            
+            let currsubtotal = parseFloat(localStorage.subtotal);
+            let thisPrice = parseFloat(data['price']);
+            
+            localStorage.subtotal = (currsubtotal + thisPrice).toFixed(2);
+            localStorage.grandTotal = localStorage.subtotal;
+            
+            updateCartTotal();
         }
-    
-    });//ajax
-}  
+    });
+}

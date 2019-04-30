@@ -1,5 +1,8 @@
-/* global $ localStorage */
-let cart;
+/* global $ localStorage location addItemToCartPage */
+
+var cart /* cart containing movie IDs */
+
+/*** Global Cart functions ***/
 
 function getCart() {
     if (!localStorage.getItem("cart"))
@@ -9,7 +12,6 @@ function getCart() {
     updateCart();
 }
 
-/**/
 function updateCart(itemID=null) {
     $("#cart-count").html(cart.length);
     
@@ -38,7 +40,7 @@ function updateCart(itemID=null) {
     }
 }
 
-/* Run on #add-cart button click to determine if we need to add or remove from cart */
+/* Single movie: Run on #add-cart button click to determine if we need to add or remove from cart */
 function cartAction(itemID) {
     // if value is 1 (true), the item is in the cart and should be removed
     if ($("#add-cart").val() == 1) {
@@ -61,31 +63,139 @@ function cartAction(itemID) {
     updateCart(itemID);
 }
 
-function addMoviesToCartPage(){
+/*** Cart Page ***/
+
+function getCartPage() {
+    localStorage.subtotal = 0;
+    localStorage.discountPercent = 0;
+    localStorage.discountAmount = 0;
+    localStorage.grandTotal = 0;
     
+    getCart();
+    
+    for(let i = 0; i < cart.length; i++) {
+        /* found in db.js */
+        addItemToCartPage(cart[i]);
+    }
+}
+
+function appendRowToCartTable(obj){
+    let year = obj.yearReleased.substr(0, 4);
+    
+    let str = `<tr>`+
+                `<td class="td-poster">` +
+                    `<div class="movie-poster-container">` +
+                        `<img class="movie-poster card-img" src="https://image.tmdb.org/t/p/w500/${obj["poster"]}" alt="pic">` +
+                    `</div>` +
+                `</td>` +
+                
+                `<td class="align-middle">${obj["name"]} (${year})</td>` +
+                `<td class="td-info align-middle">$${obj["price"]}</td>` +
+                
+                `<td class="align-middle text-right my-2">` +
+                    `<button class="btn btn-outline-danger rounded-pill mt-2" id="remove" value="${obj['itemId']}">` +
+                        `<i class="fas fa-trash"></i>` +
+                    `</button>` +
+                `<td>` + 
+            '</tr>';
+            
+    $("#tableBody").append(str);
+    $("#cartResults").show();
+}
+
+function removeItem(item) {
+    console.log('button clicked');
+	console.log(item.val());
+	
+	// this will only be called when the cart is at least length 1
+	// so no need to checkif cart is null
+	console.log(JSON.parse(localStorage.getItem("cart")));
+	let cart = JSON.parse(localStorage.getItem("cart"));
+	let temp = new Array();
+	for(let i = 0; i < cart.length; i++){
+	    if(cart[i] != item.val())
+	        temp.push(cart[i]);
+	}
+// 	console.log("temp: " + temp);
+	localStorage.setItem("cart", JSON.stringify(temp));
+	console.log(JSON.parse(localStorage.getItem("cart")));
+	location.reload(); //redirecting to a new file
+}
+
+function completePurchase() {
+    let confirmation = parseInt(Math.random() * 1000000) + 1;
     if (!localStorage.getItem("cart"))
         cart = new Array();
     else
         cart = JSON.parse(localStorage.getItem("cart"));
     
     for(let i = 0; i < cart.length; i++){
-        addItemToCartPage(cart[i]);
+        addItemToOrder(cart[i], confirmation);
     }
-    // console.log(sum);
+    $("#tableBody").html("");
+    $("#tableBody").html("Success! Your order went through<br>Confirmation Number: " + confirmation);
+    updateCartTotal();
+    localStorage.setItem("cart", new Array());
 }
 
-// need to fix poster
-function appendRowToCartTable(obj){
-    console.log(obj);
-  let str = '<tr class="tableRow">'+
-                '<td class="td-poster">' + 
-                    '<div class="movie-poster-container">' +
-                        ' <img class="movie-poster card-img" src="' + "https://image.tmdb.org/t/p/w500/" + obj["poster"] + '" alt="pic">' +
-                    '</div>' +
-                    '<button class="btn btn-danger mt-2" id="remove" value="' + obj['itemId'] + '">Remove</button>' + 
-                '</td>' +
-                '<td class="td-info">' + obj["name"] + '<br>$' + obj["price"] + '</td>' +
-            '</tr>';
-    $("#tableBody").append(str);
-    $("#cartResults").show();
+function addItemToOrder(id, confirmation) {
+    $.ajax({
+        type: "GET",
+        url: "api/addItemToOrder.php",
+        dataType: "json",
+        data: { 
+            "id": id,
+            "conNum": confirmation,
+        },
+        success: function(data,status) {
+            console.log(status);
+        }
+    });
+}
+
+function clearCart() {
+    console.log("clear button clicked");
+    cart = new Array();
+    localStorage.setItem("cart", cart);
+    $("#tableBody").html("");
+    // doesnt update cart total
+    updateCart();
+}
+
+function applyDiscount() {
+    $.ajax({
+        type: "GET",
+        url: "api/getPromoCode.php",
+        dataType: "json",
+        data: { "code": $("#promo-input").val() },
+        
+        success: function(data,status) {
+            console.log("data: " + data['discount']);
+            if(data['discount'] == 0.0){
+                $("#promoOut").html("Invalid Promo Code!");
+                $("#promoOut").addClass("text-danger").removeClass("text-success");
+                $("#discount-field").removeClass("d-flex").addClass("d-none");
+            }
+            else {
+                localStorage.discountPercent = data['discount'] * 100;
+                $("#promoOut").html("Success! " + localStorage.discountPercent + "% discount applied!");
+                
+                $("#promoOut").addClass("text-success").removeClass("text-danger");
+                $("#discount-field").removeClass("d-none").addClass("d-flex");
+                
+                localStorage.discountAmount = (localStorage.subtotal * data['discount']);
+                $("#discount").html(localStorage.discountAmount);
+                
+                localStorage.grandTotal = (localStorage.subtotal - localStorage.discountAmount).toFixed(2);
+                updateCartTotal();
+            }
+        
+        }
+    
+    });
+}
+
+function updateCartTotal() {
+    $("#subtotal").html("$" + localStorage.subtotal);
+    $("#finalPrice").html("$" + localStorage.grandTotal);
 }
