@@ -32,9 +32,13 @@
         <?php include "parts/footer.php" ?>
         <script>
             $("#submit").on("click", function(){
-                console.log($("#name").val());
+                // console.log($("#name").val());
+                // console.log($("#description").val());
+                // console.log($("#poster").val());
+                // console.log($("#backdrop").val());
+                // console.log($("#rating").val());
+                // console.log($("#price").val());
                 $.ajax({
-
                     type: "GET",
                     url: "api/addProduct.php",
                     dataType: "json",
@@ -43,8 +47,8 @@
                         "description" : $("#description").val(),
                         "poster" : $("#poster").val(),
                         "backdrop" : $("#backdrop").val(),
-                        "rating" : $("#rating").val(),
-                        "price" : $("#price").val()
+                        "rating" : parseInt($("#rating").val()),
+                        "price" : parseInt($("#price").val()),
                     },
                     
                     success: function(data,status) {
@@ -61,6 +65,6 @@
                 
                 });//ajax
             });
-            </script>
+        </script>
     </body>
 </html>

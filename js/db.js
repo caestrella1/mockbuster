@@ -17,6 +17,21 @@ function getRecentMovies() {
     });
 }
 
+function getAllMovies() {
+    $.ajax({
+        type: "GET",
+        url: "api/getAllItems.php",
+        dataType: "json",
+        success: function(movies, status) {
+            movies.forEach(function(m, i) {
+                let base = "https://image.tmdb.org/t/p/w500/";
+                let rating = (parseFloat(m.rating) / 2.0).toFixed(1);
+                addMoviePoster("#all-movies", m.itemId, m.name, base + m.poster, rating, m.price); // adds movie to UI
+            });
+        }
+    });
+}
+
 function getTopRatedMovies() {
     $.ajax({
         type: "GET",
