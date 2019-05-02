@@ -42,15 +42,8 @@
             
             <div class="row">
                 <div class="col-12 col-lg-8">
-                    
-                    <div class="text-right">
-                        <button class="btn btn-sm btn-danger" id="clearCart">Empty Cart</button>
-                    </div>
 
-                    <table class="table table-hover table-borderless" id="table">
-                        <tbody id="tableBody"></tbody>
-                    </table>
-                    
+                    <div id="item-table" class="mb-5"></div>
                     
                 </div><!-- col-8 -->
                 
@@ -92,6 +85,7 @@
                                 </div>
 
                                 <button class="btn btn-success btn-block mt-2" id="finalizeCart" onclick="completePurchase()">Complete Purchase</button>
+                                <button class="btn btn-outline-danger btn-block mt-2" id="clearCart">Empty Cart</button>
                             </div>
                         </div>
                         

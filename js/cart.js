@@ -82,24 +82,30 @@ function getCartPage() {
 function appendRowToCartTable(obj){
     let year = obj.yearReleased.substr(0, 4);
     
-    let str = `<tr>`+
-                `<td class="td-poster">` +
-                    `<div class="movie-poster-container">` +
-                        `<img class="movie-poster card-img" src="https://image.tmdb.org/t/p/w500/${obj["poster"]}" alt="pic">` +
-                    `</div>` +
-                `</td>` +
+    let str =   `<div class="card mb-3">` +
+                    `<table class="table table-hover table-borderless m-0">` +
+                        `<tr>` +
+                            `<td class="td-poster">` +
+                                `<a href="movie.php?id=${obj["itemId"]}">` +
+                                `<div class="movie-poster-container">` +
+                                    `<img class="movie-poster card-img" src="https://image.tmdb.org/t/p/w500/${obj["poster"]}" alt="pic">` +
+                                `</div></a>` +
+                            `</td>` +
                 
-                `<td class="align-middle">${obj["name"]} (${year})</td>` +
-                `<td class="td-info align-middle">$${obj["price"]}</td>` +
-                
-                `<td class="align-middle text-right my-2">` +
-                    `<button class="btn btn-outline-danger rounded-pill mt-2" id="remove" value="${obj['itemId']}">` +
-                        `<i class="fas fa-trash"></i>` +
-                    `</button>` +
-                `<td>` + 
-            '</tr>';
+                            `<td class="align-middle">${obj["name"]} (${year})<br>` +
+                            `<span class="font-weight-bold text-success">$${obj["price"]}<span></td>` +
+                            // `<td class="td-info align-middle">$${obj["price"]}</td>` +
+                            
+                            `<td class="align-middle text-right">` +
+                                `<button class="btn btn-outline-danger rounded-pill mr-2" id="remove" value="${obj['itemId']}">` +
+                                    `<i class="fas fa-trash"></i>` +
+                                `</button>` +
+                            `</td>` + 
+                        `</tr>` +
+                    `</table>` +
+                `</div>`;
             
-    $("#tableBody").append(str);
+    $("#item-table").append(str);
     $("#cartResults").show();
 }
 
@@ -157,7 +163,7 @@ function clearCart() {
     console.log("clear button clicked");
     cart = new Array();
     localStorage.setItem("cart", cart);
-    $("#tableBody").html("");
+    $("#item-table").html("");
     // doesnt update cart total
     updateCart();
 }
