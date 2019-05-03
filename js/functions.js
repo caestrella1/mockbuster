@@ -20,14 +20,18 @@ function addMoviePoster(section, id, name, image, rating, price) {
 }
 
 /* Admin movie item (not being used yet) */
-function addMovieAdmin(url="", img="") {
+function addMovieAdmin(id, url, name, img, rating, price) {
     $("#all-movies").append(
         `<div class="col-12 col-lg-3 mb-4">` +
-            `<a href="${url}"><div class="movie shadow">` +
+            `<a href="movie.php?id=${id}"><div class="movie shadow">` +
                 `<img src="${img}" class="card-img rounded-lg shadow" alt="">` +
             `</div></a>` +
-            `<button class="btn btn-primary update-movie">Update</button>` +
-            `<button class="btn btn-outline-danger update-movie">Delete</button>` +
+            `<a class="btn btn-outline-primary mr-2" href='addProducts.php?productId=${id}'>Update</a>` +
+            `<form action="api/deleteItem.php" method="post" onsubmit="return confirm('Are you sure you want to delete this item?')">` +
+                `<input name="id" type="hidden" value="${id}">` +
+                `<button class="m-delete btn btn-outline-danger mr-2">Delete</button>` +
+            `</form>` +
+            // `<button class="btn btn-outline-danger delete-movie" val="${id}">Delete</button>` +
         `</div>`
     );
 }

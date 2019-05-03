@@ -27,4 +27,5 @@ $sql = "DELETE FROM itemTable WHERE itemId = $id";
 
 $stmt = $conn->prepare($sql);
 $stmt->execute();
+header("location: ../admin.php");
 ?>

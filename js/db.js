@@ -26,7 +26,7 @@ function getAllMovies() {
             movies.forEach(function(m, i) {
                 let base = "https://image.tmdb.org/t/p/w500/";
                 let rating = (parseFloat(m.rating) / 2.0).toFixed(1);
-                addMoviePoster("#all-movies", m.itemId, m.name, base + m.poster, rating, m.price); // adds movie to UI
+                addMovieAdmin(m.itemId, "", m.name, base + m.poster, rating, m.price); // adds movie to UI
             });
         }
     });
@@ -88,6 +88,35 @@ function getMovieInfoSingle(id) {
             
             let rating = (parseFloat(movie.rating) / 2.0).toFixed(1);
             $("#rating").html(rating + "/5");
+            
+            updateCart(id);
+        }
+    });
+}
+
+/* Get all the movie's info for displaying on a single page */
+function getMovieInfoAdmin(id) {
+    $.ajax({
+        type: "GET",
+        url: "api/getMovie.php",
+        dataType: "json",
+        data: {
+            "itemId": id
+        },
+        success: function(movie, status) {
+            let imgBasePoster = "https://image.tmdb.org/t/p/w500";
+            let imgBaseBD = "https://image.tmdb.org/t/p/original";
+            $("#name").val(movie.name);
+            $("#description").val(movie.description);
+            $("#poster").val(imgBasePoster + movie.poster);
+            $("#backdrop").val(imgBaseBD + movie.backdrop);
+            
+            // let date = new Date(movie.yearReleased).toLocaleString('en-us', { month: 'long', day: 'numeric', year: 'numeric' });
+            // $("#date").html(date);
+            
+            $("#rating").val(movie.rating);
+            $("#date").val(movie.yearReleased);
+            $("#price").val(movie.price);
             
             updateCart(id);
         }

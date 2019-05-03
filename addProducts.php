@@ -3,6 +3,12 @@
     <head>
         <?php include "parts/head.php" ?>
         <title>Add New Product| <?=$site["title"]?></title>
+        <script>
+            $(function() {
+                let id = <?php echo $_GET['productId']; ?>;
+                getMovieInfoAdmin(id);
+            });
+        </script>
     </head>
     <body>
         <?php include "parts/nav.php" ?>
@@ -27,6 +33,9 @@
             Price:<br>
             <input type="text" id="price">
             <br><br>
+            Date Released:<br>
+            <input type="date" id="date">
+            <br><br>
             <input type="submit" id="submit">
         <!--</form>-->
         <?php include "parts/footer.php" ?>
@@ -42,7 +51,8 @@
                     type: "GET",
                     url: "api/addProduct.php",
                     dataType: "json",
-                    data: { 
+                    data: {
+                        "id": id,
                         "name": $("#name").val(),
                         "description" : $("#description").val(),
                         "poster" : $("#poster").val(),
