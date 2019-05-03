@@ -23,15 +23,30 @@ function addMoviePoster(section, id, name, image, rating, price) {
 function addMovieAdmin(id, url, name, img, rating, price) {
     $("#all-movies").append(
         `<div class="col-12 col-lg-3 mb-4">` +
-            `<a href="movie.php?id=${id}"><div class="movie shadow">` +
-                `<img src="${img}" class="card-img rounded-lg shadow" alt="">` +
-            `</div></a>` +
-            `<a class="btn btn-outline-primary mr-2" href='addProducts.php?productId=${id}'>Update</a>` +
-            `<form action="api/deleteItem.php" method="post" onsubmit="return confirm('Are you sure you want to delete this item?')">` +
-                `<input name="id" type="hidden" value="${id}">` +
-                `<button class="m-delete btn btn-outline-danger mr-2">Delete</button>` +
-            `</form>` +
-            // `<button class="btn btn-outline-danger delete-movie" val="${id}">Delete</button>` +
+                `<div class="admin-movie movie-poster-container position-relative rounded-lg">` +
+                
+                    /* action sheet overlay */
+                    `<div class="movie-overlay position-absolute w-100 h-100">` +
+                    
+                        `<div class="card-body h-100 d-flex flex-column justify-content-center">` +
+                        
+                            `<a class="btn btn-info btn-block" href="movie.php?id=${id}">View</a>` +
+                            
+                            `<a class="btn btn-primary my-2" href="addProducts.php?productId=${id}">Update</a>` +
+                            
+                            `<form action="api/deleteItem.php" method="post" onsubmit="return confirm('Are you sure you want to delete this item?')">` +
+                                `<button class="m-delete btn btn-block btn-danger" name="id" value="${id}">Delete</button>` +
+                            `</form>` +
+                            
+                        `</div>` +
+                        
+                    `</div>` +
+                    
+                    /* the movie poster */
+                    `<img src="${img}" class="movie-poster card-img" alt="${name} poster">` +
+                `</div>` +
+                
+            `<h5 class="movie-title text-dark mt-2 mb-0">${name}</h5>` +
         `</div>`
     );
 }

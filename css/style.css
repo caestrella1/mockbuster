@@ -66,3 +66,14 @@ a.movie:hover {
 .td-poster {
     width: 100px;
 }
+
+.movie-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: .25s;
+}
+
+.movie-overlay:hover {
+    opacity: 1;
+    transition: .25s;
+}

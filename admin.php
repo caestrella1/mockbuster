@@ -2,35 +2,29 @@
 <html>
     <head>
         <?php include "parts/head.php"; ?>
-        <title>Admin Page| <?=$site["title"]?></title>
+        <title>Admin Dashboard | <?=$site["title"]?></title>
+        <script>
+            /* global $ getAllMovies */
+            $(function() {
+                getAllMovies();
+            });
+        </script>
     </head>
     <body>
-       <?php include "parts/nav.php"; ?> 
-    
-        <h2>Add New Product</h2>
-        <!-- button that redirects to add product page. -->
-        
-        <a href="addProducts.php"> Add New Movies </a>
-        
-        <h2>Films</h2>
-    
-        <div class="row">
-            
-            <div id="all-movies">
-                
-            </div>
-            
-        </div>
-        
-        <!-- for delete and update buttons -->
-        <script>
-        
-        getAllMovies();
-            
-        </script>
-        
+       <?php include "parts/nav.php"; ?>
+       
+       <main class="container">
+           <div class="row">
+               <div class="d-flex mt-4 align-items-center justify-content-between">
+                    <h2>Admin Dashboard</h2>
+                    <a href="addProducts.php" class="btn btn-success">Add Movie</a>
+                </div>
+           </div>
+           
+           <div id="all-movies" class="row"></div>
+           
+       </main>
 
         <?php include "parts/footer.php"; ?>
-
     </body>
 </html>
