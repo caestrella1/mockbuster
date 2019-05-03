@@ -10,9 +10,12 @@
 include '../backend/dbConnection.php';
 $conn = getDatabaseConnection("movie");
 
+$order = $_GET["order"];
 $sql = "SELECT * FROM itemTable WHERE 1";
 
-// print($sql);
+if ($order == "abc") $sql .= " ORDER BY name ASC";
+else if ($order == "recent") $sql .= " ORDER BY cast(yearReleased as datetime) DESC";
+else if ($order == "rating") $sql .= " ORDER BY rating DESC";
 
 $stmt = $conn->prepare($sql);
 $stmt->execute();

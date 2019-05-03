@@ -6,6 +6,7 @@ function getRecentMovies() {
         type: "GET",
         url: "api/getAllItems.php",
         dataType: "json",
+        data: { "order": "recent" },
         success: function(movies, status) {
             movies.forEach(function(m, i) {
                 if (i >= 12) return;
@@ -22,6 +23,7 @@ function getAllMovies() {
         type: "GET",
         url: "api/getAllItems.php",
         dataType: "json",
+        data: { "order": "abc" },
         success: function(movies, status) {
             movies.forEach(function(m, i) {
                 let base = "https://image.tmdb.org/t/p/w500/";
@@ -35,9 +37,9 @@ function getAllMovies() {
 function getTopRatedMovies() {
     $.ajax({
         type: "GET",
-        url: "api/getTopRatedMovies.php",
+        url: "api/getAllItems.php",
         dataType: "json",
-        data: { "minRating": 0 },
+        data: { "order": "rating" },
         success: function(movies, status) {
             movies.forEach(function(m, i) {
                 if (i >= 12) return;
