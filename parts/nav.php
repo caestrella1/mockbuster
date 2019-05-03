@@ -7,24 +7,23 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="search.php">Search</a>
+            <ul class="navbar-nav text-center mr-lg-auto">
+                
+                <li class="nav-item mt-2 mt-lg-0 mb-lg-0">
+                    <a class="nav-link" href="admin.php"><i class="fas fa-user-shield mr-2"></i>Dashboard</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Account
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Purchase History</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-danger" href="#">Log out</a>
-                    </div>
+                
+                <li class="nav-item mb-2 mb-lg-0">
+                    <a class="nav-link" href="search.php"><i class="fas fa-search mr-2"></i>Search</a>
                 </li>
+                
+                <li class="nav-item mb-2 mb-lg-0">
+                    <a class="nav-link" href="logout.php"><i class="fas fa-sign-out-alt mr-2"></i>Log Out</a>
+                </li>
+            
             </ul>
             
-            <div>
+            <div class="my-2 my-lg-0">
                 <a href="cart.php"><button id="cart" class="btn badge-pill btn-block btn-outline-light d-block shadow-sm font-weight-bold">
                     <i class="fas fa-shopping-cart mr-2 mr-lg-1"></i>
                     <span class="d-lg-none ">My Cart:</span>
