@@ -63,12 +63,6 @@ a.movie:hover {
     opacity: 0.75;
 }
 
-#toast-container {
-    top: 0;
-    right: 0;
-    z-index: 2000;
-}
-
 .td-poster {
     width: 100px;
 }

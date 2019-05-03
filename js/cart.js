@@ -54,8 +54,15 @@ function cartAction(itemID) {
     // if value is 0 (false), the item is NOT in the cart and should be added
     else {
         cart.push(itemID);
+        
         $("#added-toast").html($("#title").html());
+        $(".toast").removeClass("invisible").addClass("visible");
         $(".toast").toast("show");
+        
+        /* add .invisible so that the container doesn't overlap page elements on hover */
+        $('.toast').on('hidden.bs.toast', function () {
+          $(".toast").addClass("invisible").removeClass("visible");
+        });
     }
     
     localStorage.setItem("cart", JSON.stringify(cart));

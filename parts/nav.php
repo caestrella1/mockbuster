@@ -9,36 +9,38 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav text-center mr-lg-auto">
                 
-                <li class="nav-item mt-2 mt-lg-0 mb-lg-0">
+                <li class="nav-item pt-2 pt-lg-0 pb-lg-0">
                     <a class="nav-link" href="admin.php"><i class="fas fa-user-shield mr-2"></i>Dashboard</a>
                 </li>
                 
-                <li class="nav-item mb-2 mb-lg-0">
+                <li class="nav-item pb-2 pb-lg-0">
                     <a class="nav-link" href="search.php"><i class="fas fa-search mr-2"></i>Search</a>
                 </li>
                 
-                <li class="nav-item mb-2 mb-lg-0">
+                <li class="nav-item pb-2 pb-lg-0">
                     <a class="nav-link" href="logout.php"><i class="fas fa-sign-out-alt mr-2"></i>Log Out</a>
                 </li>
             
             </ul>
             
             <div class="my-2 my-lg-0">
-                <a href="cart.php"><button id="cart" class="btn badge-pill btn-block btn-outline-light d-block shadow-sm font-weight-bold">
+                <a id="cart" href="cart.php" class="btn badge-pill btn-block btn-outline-light d-block shadow-sm font-weight-bold">
                     <i class="fas fa-shopping-cart mr-2 mr-lg-1"></i>
                     <span class="d-lg-none ">My Cart:</span>
                     <span id="cart-count">0</span>
-                </button></a>
+                </a>
             </div>
         </div>
     </div>
 </nav>
 
-<div id="toast-container" class="d-inline position-fixed mt-5 mx-2 mr-lg-5">
-    <div class="toast bg-info text-light mt-4 mt-lg-5" role="alert" aria-live="polite" aria-atomic="true" data-delay="1500">
-        <div class="toast-body">
-            <i class="fas fa-shopping-cart mr-2 mr-lg-1"></i>
-            Successfully added "<span id="added-toast"></span>" to cart!
+<div id="toast-container" class="invisible position-fixed w-100 d-flex align-items-end" style="z-index:1">
+    <div class="container">
+        <div class="toast invisible mx-auto mx-md-0 ml-md-auto bg-info text-light mt-3" role="alert" aria-live="polite" aria-atomic="true" data-delay="1500">
+            <div class="toast-body">
+                <i class="fas fa-shopping-cart mr-2 mr-lg-1"></i>
+                Successfully added "<span id="added-toast"></span>" to cart!
+            </div>
         </div>
     </div>
 </div>
