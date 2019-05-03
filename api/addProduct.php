@@ -19,17 +19,24 @@ $np = array();
 // $np[":backdrop"] = $_GET["backdrop"];
 // $np[":rating"] = $_GET["rating"];
 // $np[":price"] = $_GET["price"];
-
+$id = $_GET["id"];
 $name = $_GET["name"];
 $desc = $_GET['description'];
 $back = $_GET["backdrop"];
 $poster = $_GET["poster"];
 $rating = $_GET["rating"];
 $price = $_GET["price"];
+$year = $_GET["year"];
 
-$sql = "INSERT INTO itemTable (name, description, poster, backdrop, rating, price) 
+if($id==NULL){
+    $sql = "INSERT INTO itemTable (name, description, poster, backdrop, rating, price) 
         VALUES ('$name', '$desc', '$poster', '$back', $rating, $price)";
+}else{
+    $sql = "UPDATE `itemTable` SET `name` = $name, `description` = $desc, `poster` = $poster, `backdrop` = $back, 
+        `rating` = $rating, `price` = $price, `yearReleased` = $year WHERE `itemTable`.`itemId` = $id";
 // print($sql);
+
+}
 
 $stmt = $conn->prepare($sql);
 $stmt->execute();
