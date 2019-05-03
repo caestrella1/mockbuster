@@ -16,9 +16,19 @@ $conn = getDatabaseConnection("movie");
 $id = $_GET['id']; 
 $conNum = $_GET['conNum']; 
 
-// add to the order history table
-$sql = "INSERT INTO orderHistory (itemId, conNum) VALUES ($id, $conNum)";
+// $id = 4;
+// $conNum =111;
 
+$sql = "SELECT price FROM `itemTable` WHERE itemId=$id";
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$val = $stmt->fetch(PDO::FETCH_ASSOC);
+if(!empty($val)) {
+    $price = $val['price'];
+}
+
+// add to the order history table
+$sql = "INSERT INTO orderHistory (itemId, conNum, price) VALUES ($id, $conNum, $price)";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 
