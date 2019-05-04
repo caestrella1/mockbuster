@@ -28,13 +28,13 @@ function updateCart(itemID=null) {
         if (cart.includes(itemID)) {
             $("#add-cart").val(1);
             $("#add-cart i").addClass("fa-minus-circle").removeClass("fa-cart-plus");
-            $("#add-cart").addClass("btn-outline-light").removeClass("btn-info");
+            $("#add-cart").addClass("btn-danger").removeClass("btn-info");
             $("#buy-movie").html(`Remove from Cart`);
         }
         else {
             $("#add-cart").val(0);
             $("#add-cart i").addClass("fa-cart-plus").removeClass("fa-minus-circle");
-            $("#add-cart").addClass("btn-info").removeClass("btn-outline-light");
+            $("#add-cart").addClass("btn-info").removeClass("btn-danger");
             $("#buy-movie").html(`Add to Cart`);
         }
     }

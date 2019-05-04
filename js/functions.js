@@ -57,3 +57,11 @@ function showMovieImages() {
         $("#poster").attr("src", $("#input-poster").val());
     });
 }
+
+function getRating(rating) {
+    for (let i = 1; i <= 5; i++, rating--) {
+        if (rating >= 1) $("#rating").append(`<i class="fas fa-star"></i>`);
+        else if (rating == 0.5) $("#rating").append(`<i class="fas fa-star-half-alt"></i>`);
+        else $("#rating").append(`<i class="far fa-star"></i>`);
+    }
+}

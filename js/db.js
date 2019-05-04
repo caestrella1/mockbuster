@@ -89,7 +89,7 @@ function getMovieInfoSingle(id) {
             $("#date").html(date);
             
             let rating = (parseFloat(movie.rating) / 2.0).toFixed(1);
-            $("#rating").html(rating + "/5");
+            getRating(rating);
             
             updateCart(id);
         }
