@@ -1,5 +1,6 @@
 <!-- Navigation bar used on every page -->
-<nav class="navbar navbar-expand-lg navbar-dark <?=$site["theme-bg"]?> sticky-top shadow">
+<?php session_start(); ?>
+<nav class="navbar navbar-expand-lg navbar-dark <?=$site["theme-bg"]?> sticky-top shadow position-relative">
     <div class="container">
         <a class="navbar-brand" href="index.php"><?=$site["title"]?></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,9 +18,21 @@
                     <a class="nav-link" href="search.php"><i class="fas fa-search mr-2"></i>Search</a>
                 </li>
                 
+                <?php
+                    if (isset($_SESSION['adminName'])):
+                ?>
                 <li class="nav-item pb-2 pb-lg-0">
                     <a class="nav-link" href="backend/logoutProcess.php"><i class="fas fa-sign-out-alt mr-2"></i>Log Out</a>
                 </li>
+                <?php
+                    else:
+                ?>
+                <li class="nav-item pb-2 pb-lg-0">
+                    <a class="nav-link" href="login.php"><i class="fas fa-sign-out-alt mr-2"></i>Log In</a>
+                </li>
+                <?php
+                    endif;
+                ?>
             
             </ul>
             
