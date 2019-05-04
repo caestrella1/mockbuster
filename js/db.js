@@ -10,9 +10,8 @@ function getRecentMovies() {
         success: function(movies, status) {
             movies.forEach(function(m, i) {
                 if (i >= 12) return;
-                let base = "https://image.tmdb.org/t/p/w500/";
                 let rating = (parseFloat(m.rating) / 2.0).toFixed(1);
-                addMoviePoster("#recent-movies", m.itemId, m.name, base + m.poster, rating, m.price); // adds movie to UI
+                addMoviePoster("#recent-movies", m.itemId, m.name, m.poster, rating, m.price); // adds movie to UI
             });
         }
     });
@@ -26,9 +25,8 @@ function getAllMovies() {
         data: { "order": "abc" },
         success: function(movies, status) {
             movies.forEach(function(m, i) {
-                let base = "https://image.tmdb.org/t/p/w500/";
                 let rating = (parseFloat(m.rating) / 2.0).toFixed(1);
-                addMovieAdmin(m.itemId, "", m.name, base + m.poster, rating, m.price); // adds movie to UI
+                addMovieAdmin(m.itemId, "", m.name, m.poster, rating, m.price); // adds movie to UI
             });
         }
     });
@@ -43,9 +41,8 @@ function getTopRatedMovies() {
         success: function(movies, status) {
             movies.forEach(function(m, i) {
                 if (i >= 12) return;
-                let base = "https://image.tmdb.org/t/p/w500/";
                 let rating = (parseFloat(m.rating) / 2.0).toFixed(1);
-                addMoviePoster("#top-movies", m.itemId, m.name, base + m.poster, rating, m.price); // adds movie to UI
+                addMoviePoster("#top-movies", m.itemId, m.name, m.poster, rating, m.price); // adds movie to UI
             });
         }
     });
@@ -61,9 +58,8 @@ function getMovieInfoShort(id) {
             "itemId": id
         },
         success: function(movie, status) {
-            let imgBase = "https://image.tmdb.org/t/p/w500/";
             let rating = (parseFloat(movie.rating) / 2.0).toFixed(1);
-            addMoviePoster(id, movie.name, imgBase + movie.poster, rating); // adds movie to UI
+            addMoviePoster(id, movie.name, movie.poster, rating); // adds movie to UI
         }
     });
 }
@@ -78,12 +74,11 @@ function getMovieInfoSingle(id) {
             "itemId": id
         },
         success: function(movie, status) {
-            let imgBasePoster = "https://image.tmdb.org/t/p/w500";
-            let imgBaseBD = "https://image.tmdb.org/t/p/original";
+            $("#page-title").html(movie.name + $("#page-title").html());
             $("#title").html(movie.name);
             $("#desc").html(movie.description);
-            $("#poster").attr("src", imgBasePoster + movie.poster);
-            $("#backdrop").css("background-image", `url(${imgBaseBD + movie.backdrop})`);
+            $("#poster").attr("src", movie.poster);
+            $("#backdrop").css("background-image", `url(${movie.backdrop})`);
             
             let date = new Date(movie.yearReleased).toLocaleString('en-us', { month: 'long', day: 'numeric', year: 'numeric' });
             $("#date").html(date);
@@ -106,12 +101,10 @@ function getMovieInfoAdmin(id) {
             "itemId": id
         },
         success: function(movie, status) {
-            let imgBasePoster = "https://image.tmdb.org/t/p/w500";
-            let imgBaseBD = "https://image.tmdb.org/t/p/original";
             $("#input-name").val(movie.name);
             $("#input-description").val(movie.description);
-            $("#input-poster").val(imgBasePoster + movie.poster);
-            $("#input-backdrop").val(imgBaseBD + movie.backdrop);
+            $("#input-poster").val(movie.poster);
+            $("#input-backdrop").val(movie.backdrop);
             $("#input-rating").val(movie.rating);
             $("#input-date").val(movie.yearReleased);
             $("#input-price").val(movie.price);
@@ -136,9 +129,8 @@ function searchMovies() {
         success: function(movies) {
             $("#search-results").html("");
             movies.forEach(function(m) {
-                let imgBase = "https://image.tmdb.org/t/p/w500/";
                 let rating = (parseFloat(m.rating) / 2.0).toFixed(1);
-                addMoviePoster("#search-results", m.itemId, m.name, imgBase + m.poster, rating, m.price); // adds movie to UI
+                addMoviePoster("#search-results", m.itemId, m.name, m.poster, rating, m.price); // adds movie to UI
             }); 
         }
     });

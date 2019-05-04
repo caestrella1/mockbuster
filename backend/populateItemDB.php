@@ -18,16 +18,15 @@ for($i = 0; $i < $numMovies; $i++){
     $id = $obj["id"];
     $name = $obj['title'];
     $desc = $obj['overview'];
-    $poster = "https://image.tmdb.org/t/p/w500" + $obj['poster_path'];
-    $backdrop = "https://image.tmdb.org/t/p/original" + $obj['backdrop_path'];
+    $poster = "https://image.tmdb.org/t/p/w500" . $obj['poster_path'];
+    $backdrop = "https://image.tmdb.org/t/p/original" . $obj['backdrop_path'];
     $rating = $obj['vote_average'];
     $year = $obj['release_date'];
     $rand = mt_rand(10, 20);
     $rand = $rand + .99;
-print_r($year);
-    $sql = "INSERT INTO itemTable (name, description, poster, backdrop, rating, price, yearReleased) VALUES ";
-    $sql .= "('$name', '$desc', '$poster', '$backdrop', '$rating', '$rand', '$year');";
-    // print($sql);
+    
+    $sql = "INSERT INTO itemTable (itemId, name, description, poster, backdrop, rating, price, yearReleased) VALUES ";
+    $sql .= "($id, '$name', '$desc', '$poster', '$backdrop', '$rating', '$rand', '$year');";
     try {
         $stmt = $conn->prepare($sql);
         $stmt->execute();

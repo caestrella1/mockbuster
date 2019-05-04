@@ -2,7 +2,7 @@
 <html>
     <head>
         <?php include "parts/head.php" ?>
-        <title>Home | <?=$site["title"]?></title>
+        <title id="page-title"> | <?=$site["title"]?></title>
         <script>
             /* global $ getMovieInfoSingle */
             $(function() {

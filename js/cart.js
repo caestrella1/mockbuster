@@ -95,7 +95,7 @@ function appendRowToCartTable(obj){
                             `<td class="td-poster">` +
                                 `<a href="movie.php?id=${obj["itemId"]}">` +
                                 `<div class="movie-poster-container">` +
-                                    `<img class="movie-poster card-img" src="https://image.tmdb.org/t/p/w500/${obj["poster"]}" alt="pic">` +
+                                    `<img class="movie-poster card-img" src="${obj["poster"]}" alt="pic">` +
                                 `</div></a>` +
                             `</td>` +
                 
