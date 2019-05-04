@@ -32,7 +32,7 @@ function addMovieAdmin(id, url, name, img, rating, price) {
                         
                             `<a class="btn btn-info btn-block" href="movie.php?id=${id}">View</a>` +
                             
-                            `<a class="btn btn-primary my-2" href="addProducts.php?productId=${id}">Update</a>` +
+                            `<a class="btn btn-primary my-2" href="edit.php?productId=${id}">Update</a>` +
                             
                             `<form action="api/deleteItem.php" method="post" onsubmit="return confirm('Are you sure you want to delete this item?')">` +
                                 `<button class="m-delete btn btn-block btn-danger" name="id" value="${id}">Delete</button>` +
@@ -51,3 +51,9 @@ function addMovieAdmin(id, url, name, img, rating, price) {
     );
 }
 
+function showMovieImages() {
+    $("#poster").attr("src", $("#input-poster").val());
+    $("#input-poster").on("change", function() {
+        $("#poster").attr("src", $("#input-poster").val());
+    });
+}

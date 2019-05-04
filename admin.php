@@ -17,7 +17,7 @@
            <div class="row">
                <div class="d-flex mt-4 align-items-center justify-content-between">
                     <h2>Admin Dashboard</h2>
-                    <a href="addProducts.php" class="btn btn-success">Add Movie</a>
+                    <a href="edit.php" class="btn btn-success">Add Movie</a>
                 </div>
            </div>
            

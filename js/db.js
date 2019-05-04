@@ -108,19 +108,16 @@ function getMovieInfoAdmin(id) {
         success: function(movie, status) {
             let imgBasePoster = "https://image.tmdb.org/t/p/w500";
             let imgBaseBD = "https://image.tmdb.org/t/p/original";
-            $("#name").val(movie.name);
-            $("#description").val(movie.description);
-            $("#poster").val(imgBasePoster + movie.poster);
-            $("#backdrop").val(imgBaseBD + movie.backdrop);
+            $("#input-name").val(movie.name);
+            $("#input-description").val(movie.description);
+            $("#input-poster").val(imgBasePoster + movie.poster);
+            $("#input-backdrop").val(imgBaseBD + movie.backdrop);
+            $("#input-rating").val(movie.rating);
+            $("#input-date").val(movie.yearReleased);
+            $("#input-price").val(movie.price);
             
-            // let date = new Date(movie.yearReleased).toLocaleString('en-us', { month: 'long', day: 'numeric', year: 'numeric' });
-            // $("#date").html(date);
-            
-            $("#rating").val(movie.rating);
-            $("#date").val(movie.yearReleased);
-            $("#price").val(movie.price);
-            
-            updateCart(id);
+            showMovieImages();
+            $("#view-movie").attr("href", `movie.php?id=${id}`);
         }
     });
 }
