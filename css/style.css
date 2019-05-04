@@ -1,3 +1,21 @@
+/* Push footer to bottom of page */
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main.container, section#backdrop {
+    flex: 1;
+}
+
+/* Movie styles */
+
 .movie {
     cursor: pointer;
 }
@@ -40,7 +58,7 @@ a.movie:hover {
 /* Single movie styles */
 .movie-backdrop {
     width: 100vw;
-    min-height: 90vh;
+    /*min-height: 90vh;*/
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
