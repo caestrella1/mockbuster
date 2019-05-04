@@ -24,7 +24,11 @@
                     $("#cartResults").hide();
                 });
                 
+                $("#finalizeCart").on("click", function() {
+                   completePurchase($("#finalPrice").val()) ;
+                });
                 
+      
             });
         </script>
     </head>
@@ -84,7 +88,7 @@
                                     <h4 id="finalPrice"></h4>
                                 </div>
 
-                                <button class="btn btn-success btn-block mt-2" id="finalizeCart" onclick="completePurchase()">Complete Purchase</button>
+                                <button class="btn btn-success btn-block mt-2" id="finalizeCart">Complete Purchase</button>
                                 <button class="btn btn-outline-danger btn-block mt-2" id="clearCart">Empty Cart</button>
                             </div>
                         </div>

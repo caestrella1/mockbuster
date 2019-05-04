@@ -126,7 +126,7 @@ function removeItem(item) {
 	let cart = JSON.parse(localStorage.getItem("cart"));
 	let temp = new Array();
 	for(let i = 0; i < cart.length; i++){
-	    if(cart[i] != item.val())
+	    if(cart[i] != item.val()) // will remove all instances
 	        temp.push(cart[i]);
 	}
 // 	console.log("temp: " + temp);
@@ -135,7 +135,7 @@ function removeItem(item) {
 	location.reload(); //redirecting to a new file
 }
 
-function completePurchase() {
+function completePurchase(orderTotal) {
     let confirmation = parseInt(Math.random() * 1000000) + 1;
     if (!localStorage.getItem("cart"))
         cart = new Array();
@@ -143,7 +143,7 @@ function completePurchase() {
         cart = JSON.parse(localStorage.getItem("cart"));
     
     for(let i = 0; i < cart.length; i++){
-        addItemToOrder(cart[i], confirmation);
+        addItemToOrder(cart[i], confirmation, orderTotal);
     }
     $("#tableBody").html("");
     $("#tableBody").html("Success! Your order went through<br>Confirmation Number: " + confirmation);
@@ -151,7 +151,7 @@ function completePurchase() {
     localStorage.setItem("cart", new Array());
 }
 
-function addItemToOrder(id, confirmation) {
+function addItemToOrder(id, confirmation, orderTotal) {
     $.ajax({
         type: "GET",
         url: "api/addItemToOrder.php",
@@ -159,6 +159,7 @@ function addItemToOrder(id, confirmation) {
         data: { 
             "id": id,
             "conNum": confirmation,
+            "orderTotal": parseFloat(orderTotal),
         },
         success: function(data,status) {
             console.log(status);
