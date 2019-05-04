@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <?php session_start(); ?>
         <?php include "parts/head.php" ?>
         <title>Home | <?=$site["title"]?></title>
         <script>
@@ -15,7 +16,7 @@
                             "password":$("#passwordInput").val()
                         },
                      success: function(data, status) {
-                    //   alert(data.avgTotal);
+                        console.log("loginProcess Data: " + data);
                     },
                     complete: function(data, status) { //optional, used for debugging purposes
                     //   alert(status);
@@ -25,6 +26,11 @@
         </script>
     </head>
     <body>
+        <?php
+            if(isset($_SESSION['adminName'])) {
+                header('location: admin.php');
+            }
+        ?>
         <?php include "parts/nav.php" ?>
         
         <main class="container">

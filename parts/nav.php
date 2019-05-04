@@ -10,7 +10,7 @@
             <ul class="navbar-nav text-center mr-lg-auto">
                 
                 <li class="nav-item pt-2 pt-lg-0 pb-lg-0">
-                    <a class="nav-link" href="admin.php"><i class="fas fa-user-shield mr-2"></i>Dashboard</a>
+                    <a class="nav-link" href="login.php"><i class="fas fa-user-shield mr-2"></i>Dashboard</a>
                 </li>
                 
                 <li class="nav-item pb-2 pb-lg-0">
@@ -18,7 +18,7 @@
                 </li>
                 
                 <li class="nav-item pb-2 pb-lg-0">
-                    <a class="nav-link" href="logout.php"><i class="fas fa-sign-out-alt mr-2"></i>Log Out</a>
+                    <a class="nav-link" href="backend/logoutProcess.php"><i class="fas fa-sign-out-alt mr-2"></i>Log Out</a>
                 </li>
             
             </ul>

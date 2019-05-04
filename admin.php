@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <?php session_start(); ?>
         <?php include "parts/head.php"; ?>
         <title>Admin Dashboard | <?=$site["title"]?></title>
         <script>
@@ -11,6 +12,11 @@
         </script>
     </head>
     <body>
+        <?php
+            if(!isset($_SESSION['adminName'])) {
+                header('location: login.php');
+            }
+        ?>
        <?php include "parts/nav.php"; ?>
        
        <main class="container">

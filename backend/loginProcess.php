@@ -1,9 +1,9 @@
 <?php
 session_start(); //starts or resumes an existing session
+
 include 'dbConnection.php';
 $conn = getDatabaseConnection("movie");
 
-/** CHANGE BACK TO POST ***** */
 $username = $_POST['username'];
 $password = sha1($_POST['password']);
 
@@ -15,14 +15,13 @@ $namedParameters[':password'] = $password;
 
 $stmt = $conn->prepare($sql);
 $stmt->execute($namedParameters);
-$record = $stmt->fetch(PDO::FETCH_ASSOC); //we are expecting ONLY one record, so we use fetch instead of fetchAll
+$record = $stmt->fetch(PDO::FETCH_ASSOC); 
  
  if (empty($record)) {
-     echo "Username or Password are incorrect!";
+     echo "Admin Credentials Invalid!";
  }  else {
     $_SESSION['adminName'] = $record['firstName'] . " " . $record['lastName']; // session variables
-    header('location: admin.php'); //redirecting to a new file
-
+    header('location: ../admin.php'); //redirecting to a new file
 }
 
 ?>
