@@ -56,15 +56,52 @@ function addMovieAdmin(id, url, name, img, rating, price) {
 
 function showMovieImages() {
     $("#poster").attr("src", $("#input-poster").val());
+    $("#backdrop").css("background-image", `url(${$("#input-backdrop").val()})`);
+    
     $("#input-poster").on("change", function() {
         $("#poster").attr("src", $("#input-poster").val());
     });
+    
+    $("#input-backdrop").on("change", function() {
+        $("#backdrop").css("background-image", `url("${$("#input-backdrop").val()}")`);
+    });
 }
 
-function getRating(rating) {
+function setStars(rating) {
+    $("#rating").html("");
+    // if (action == "inc") rating += 0.5;
+    // else if (action == "dec") rating -= 0.5;
     for (let i = 1; i <= 5; i++, rating--) {
         if (rating >= 1) $("#rating").append(`<i class="fas fa-star"></i>`);
         else if (rating == 0.5) $("#rating").append(`<i class="fas fa-star-half-alt"></i>`);
         else $("#rating").append(`<i class="far fa-star"></i>`);
     }
+}
+
+function getRating(action) {
+    let rating = parseFloat($("#rating-count").val());
+    
+    if (action == "rating-down") {
+        if (rating > 0) rating -= 0.5;
+    }
+    else if (action == "rating-up") {
+        if (rating < 5) rating += 0.5;
+    }
+    
+    /* Verify valid button states */
+    if (rating == 0) {
+            $("#rating-down").attr("disabled", true);
+            $("#rating-up").attr("disabled", false);
+    }
+    else if (rating == 5) {
+        $("#rating-up").attr("disabled", true);
+        $("#rating-down").attr("disabled", false);
+    }
+    else {
+        $("#rating-down").attr("disabled", false);
+        $("#rating-up").attr("disabled", false);
+    }
+    
+    $("#rating-count").val(rating);
+    setStars(rating);
 }

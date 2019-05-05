@@ -13,31 +13,26 @@ $conn = getDatabaseConnection("movie");
 
 $np = array();
 
-// $np[":name"] = $_GET["name"];
-// $np[":description"] = $_GET["description"];
-// $np[":poster"] = $_GET["poster"];
-// $np[":backdrop"] = $_GET["backdrop"];
-// $np[":rating"] = $_GET["rating"];
-// $np[":price"] = $_GET["price"];
 $id = $_GET["id"];
-$name = $_GET["name"];
-$desc = $_GET['description'];
-$back = $_GET["backdrop"];
-$poster = $_GET["poster"];
+$np[":name"] = $_GET["name"];
+$np[":desc"] = $_GET["description"];
+$np[":poster"] = $_GET["poster"];
+$np[":backdrop"] = $_GET["backdrop"];
+$np[":year"] = $_GET["year"];
 $rating = $_GET["rating"];
 $price = $_GET["price"];
-$year = $_GET["year"];
 
-if($id==NULL){
-    $sql = "INSERT INTO itemTable (name, description, poster, backdrop, rating, price) 
-        VALUES ('$name', '$desc', '$poster', '$back', $rating, $price)";
-}else{
-    $sql = "UPDATE `itemTable` SET `name` = $name, `description` = $desc, `poster` = $poster, `backdrop` = $back, 
-        `rating` = $rating, `price` = $price, `yearReleased` = $year WHERE `itemTable`.`itemId` = $id";
-// print($sql);
-
+if ($id == "NaN") {
+    $sql = "INSERT INTO itemTable (name, description, poster, backdrop, rating, price, yearReleased)";
+    $sql .= " VALUES (:name, :desc, :poster, :backdrop, $rating, $price, :year);";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute($np);
+    echo $conn->lastInsertId();
 }
-
-$stmt = $conn->prepare($sql);
-$stmt->execute();
+else {
+    $sql = "UPDATE itemTable SET name = :name, description = :desc, poster = :poster, backdrop = :backdrop, 
+        rating = $rating, price = $price, yearReleased = :year WHERE itemId = $id";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute($np);
+}
 ?>
