@@ -143,7 +143,7 @@ function completePurchase(orderTotal) {
         cart = JSON.parse(localStorage.getItem("cart"));
     
     for(let i = 0; i < cart.length; i++){
-        addItemToOrder(cart[i], confirmation, orderTotal);
+        addItemToOrder(cart[i], confirmation, localStorage.grandTotal);
     }
     $("#tableBody").html("");
     $("#tableBody").html("Success! Your order went through<br>Confirmation Number: " + confirmation);
