@@ -4,7 +4,7 @@
 /* Add movie poster to home page */
 function addMoviePoster(section, id, name, image, rating, price) {
     $(`${section}`).append(
-        `<div class="col-12 col-lg-3 mb-4">` +
+        `<div class="col-6 col-lg-3 mb-4">` +
             `<a class="movie" href="movie.php?id=${id}">` +
                 `<div class="movie-poster-container position-relative rounded-lg">` +
                     `<img src="${image}" class="movie-poster card-img" alt="${name} poster">` +
@@ -22,7 +22,7 @@ function addMoviePoster(section, id, name, image, rating, price) {
 /* Admin movie item (not being used yet) */
 function addMovieAdmin(id, url, name, img, rating, price) {
     $("#all-movies").append(
-        `<div class="col-12 col-lg-3 mb-4">` +
+        `<div class="col-6 col-lg-3 mb-4">` +
                 `<div class="admin-movie movie-poster-container position-relative rounded-lg">` +
                 
                     /* action sheet overlay */
@@ -30,12 +30,15 @@ function addMovieAdmin(id, url, name, img, rating, price) {
                     
                         `<div class="card-body h-100 d-flex flex-column justify-content-center">` +
                         
-                            `<a class="btn btn-info btn-block" href="movie.php?id=${id}">View</a>` +
+                            `<a class="btn btn-info rounded-pill my-2" href="movie.php?id=${id}">` +
+                            `<i class="fas fa-eye mr-0 mr-md-2"></i><span class="d-none d-md-inline">View</span></a>` +
                             
-                            `<a class="btn btn-primary my-2" href="edit.php?productId=${id}">Update</a>` +
+                            `<a class="btn btn-primary rounded-pill my-2" href="edit.php?productId=${id}">` +
+                            `<i class="fas fa-edit mr-0 mr-md-2"></i><span class="d-none d-md-inline">Edit</span></a>` +
                             
                             `<form action="api/deleteItem.php" method="post" onsubmit="return confirm('Are you sure you want to delete this item?')">` +
-                                `<button class="m-delete btn btn-block btn-danger" name="id" value="${id}">Delete</button>` +
+                                `<button class="m-delete btn btn-block btn-danger rounded-pill my-2" name="id" value="${id}">` +
+                                `<i class="fas fa-trash mr-0 mr-md-2"></i><span class="d-none d-md-inline">Delete<span></button>` +
                             `</form>` +
                             
                         `</div>` +

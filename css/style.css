@@ -88,13 +88,15 @@ a.movie:hover {
     width: 100px;
 }
 
-.movie-overlay {
+.admin-movie .movie-overlay {
     background-color: rgba(0, 0, 0, 0.5);
+    visibility: hidden;
     opacity: 0;
     transition: .25s;
 }
 
-.movie-overlay:hover {
+.admin-movie:hover .movie-overlay {
+    visibility: visible;
     opacity: 1;
     transition: .25s;
 }

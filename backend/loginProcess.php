@@ -20,7 +20,7 @@ $record = $stmt->fetch(PDO::FETCH_ASSOC);
  if (empty($record)) {
      echo "Admin Credentials Invalid!";
  }  else {
-    $_SESSION['adminName'] = $record['firstName'] . " " . $record['lastName']; // session variables
+    $_SESSION['adminName'] = $record['username']; // session variables
     header('location: ../admin.php'); //redirecting to a new file
 }
 

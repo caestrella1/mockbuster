@@ -24,6 +24,7 @@ function getAllMovies() {
         dataType: "json",
         data: { "order": "abc" },
         success: function(movies, status) {
+            $("#movie-count").html(movies.length + " Movies");
             movies.forEach(function(m, i) {
                 let rating = (parseFloat(m.rating) / 2.0).toFixed(1);
                 addMovieAdmin(m.itemId, "", m.name, m.poster, rating, m.price); // adds movie to UI
