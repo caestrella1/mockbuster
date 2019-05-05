@@ -1,6 +1,6 @@
 <!-- Navigation bar used on every page -->
 <?php session_start(); ?>
-<nav class="navbar navbar-expand-lg navbar-dark <?=$site["theme-bg"]?> sticky-top shadow position-relative">
+<nav class="d-block navbar navbar-expand-lg navbar-dark <?=$site["theme-bg"]?> sticky-top shadow position-relative">
     <div class="container">
         <a class="navbar-brand" href="index.php"><?=$site["title"]?></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
