@@ -3,7 +3,7 @@
     <head>
         <?php session_start(); ?>
         <?php include "parts/head.php" ?>
-        <title>Home | <?=$site["title"]?></title>
+        <title>Log in | <?=$site["title"]?></title>
         <script>
             function login(){
                 // alert("hello");
@@ -50,7 +50,7 @@
         
                                 <input id="password" name="password" class="form-control mb-3" type="password" placeholder="Password"/>
                         
-                                <input type="submit" value="Log in" class="btn btn-lg btn-block btn-info" >
+                                <input type="submit" value="Log in" class="btn btn-lg btn-block btn-theme" >
                             </form>
                             
                         </div>

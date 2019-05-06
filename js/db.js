@@ -43,7 +43,8 @@ function getTopRatedMovies() {
             movies.forEach(function(m, i) {
                 if (i >= 12) return;
                 let rating = (parseFloat(m.rating) / 2.0).toFixed(1);
-                addMoviePoster("#top-movies", m.itemId, m.name, m.poster, rating, m.price); // adds movie to UI
+                let price = parseFloat(m.price).toFixed(2);
+                addMoviePoster("#top-movies", m.itemId, m.name, m.poster, rating, price); // adds movie to UI
             });
         }
     });
@@ -67,6 +68,7 @@ function getMovieInfoShort(id) {
 
 /* Get all the movie's info for displaying on a single page */
 function getMovieInfoSingle(id) {
+    id = parseInt(id);
     $.ajax({
         type: "GET",
         url: "api/getMovie.php",
@@ -86,6 +88,10 @@ function getMovieInfoSingle(id) {
             
             let rating = (parseFloat(movie.rating) / 2.0).toFixed(1);
             setStars(rating);
+            
+            let price = parseFloat(movie.price).toFixed(2);
+            $("#price").val(price);
+            $("#buy-movie").html(`Buy for $${price}`);
             
             updateCart(id);
         }

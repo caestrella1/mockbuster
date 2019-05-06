@@ -40,25 +40,25 @@
             <div class="row">
                 <div class="col-12">
                     <h2 class="mt-4">Shopping Cart</h2>
-                    <h4 id="cart-item-count" class="mb-4 text-info"></h4>
+                    <h4 id="cart-item-count" class="mb-4 text-theme"></h4>
                 </div>
             </div>
             
             <div class="row">
-                <div class="col-12 col-lg-8">
+                <div class="col-12 col-md-7 col-lg-8">
 
                     <div id="item-table" class="mb-5"></div>
                     
                 </div><!-- col-8 -->
                 
-                <div class="col-12 col-lg-4">
+                <div class="col-12 col-md-5 col-lg-4">
                     
                     
                     <div class="card mb-5 movie-poster-container">
                         <div class="card-body">
                             <h2 class="mb-0">Checkout</h2>
                             
-                            <h5 id="summary-count" class="text-info mb-2"></h5>
+                            <h5 id="summary-count" class="text-theme mb-2"></h5>
                             
                             <div id="cartResults">
                                 <h5>Promo Code</h5>
@@ -78,7 +78,7 @@
                                     <h5 id="subtotal">$0.00</h5>
                                 </div>
                                 
-                                <div id="discount-field" class="d-none justify-content-between text-info">
+                                <div id="discount-field" class="d-none justify-content-between text-theme">
                                     <h5>Discount</h5>
                                     <h5>-$<span id="discount"></span></h5>
                                 </div>
@@ -88,8 +88,8 @@
                                     <h4 id="finalPrice"></h4>
                                 </div>
 
-                                <button class="btn btn-success btn-block mt-2" id="finalizeCart">Complete Purchase</button>
-                                <button class="btn btn-outline-danger btn-block mt-2" id="clearCart">Empty Cart</button>
+                                <button class="btn btn-success btn-block rounded-pill mt-2" id="finalizeCart">Complete Purchase</button>
+                                <button class="btn btn-outline-danger btn-block rounded-pill mt-2" id="clearCart">Empty Cart</button>
                             </div>
                         </div>
                         

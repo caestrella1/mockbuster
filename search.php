@@ -24,7 +24,7 @@
                     <form class="input-group mb-3">
                         <input id="input-search" type="text" name="phrase" class="form-control" placeholder="Search all movies...">
                         <div class="input-group-append">
-                            <button id="btn-search" class="btn btn-info" type="submit">Search</button>
+                            <button id="btn-search" class="btn btn-theme" type="submit">Search</button>
                         </div>
                     </form>
                     
@@ -53,7 +53,7 @@
                             <div class="btn-group btn-group-toggle d-flex" data-toggle="buttons">
                                 <?php 
                                     for ($i = 1; $i <=5; $i++) {
-                                        echo "<label class='btn btn-outline-info'>
+                                        echo "<label class='btn btn-outline-theme'>
                                                 <input type='radio' name='filter-stars' value='$i' checked>$i <i class='fas fa-star ml-1'></i>
                                             </label>";
                                     }
@@ -65,7 +65,7 @@
                 </div>
             </div>
             
-            <div id="search-results" class="row mt-2"></div>
+            <div id="search-results" class="row mt-4"></div>
             
         </main>
         

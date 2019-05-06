@@ -17,10 +17,10 @@ function updateCart(itemID=null) {
     
     if (cart.length > 0) {
         $("#cart").removeClass("btn-outline-light");
-        $("#cart").addClass("btn-info");
+        $("#cart").addClass("btn-theme-light");
     }
     else {
-        $("#cart").removeClass("btn-info");
+        $("#cart").removeClass("btn-theme-light");
         $("#cart").addClass("btn-outline-light");
     }
     
@@ -28,14 +28,14 @@ function updateCart(itemID=null) {
         if (cart.includes(itemID)) {
             $("#add-cart").val(1);
             $("#add-cart i").addClass("fa-minus-circle").removeClass("fa-cart-plus");
-            $("#add-cart").addClass("btn-danger").removeClass("btn-info");
+            $("#add-cart").addClass("btn-danger").removeClass("btn-theme");
             $("#buy-movie").html(`Remove from Cart`);
         }
         else {
             $("#add-cart").val(0);
             $("#add-cart i").addClass("fa-cart-plus").removeClass("fa-minus-circle");
-            $("#add-cart").addClass("btn-info").removeClass("btn-danger");
-            $("#buy-movie").html(`Add to Cart`);
+            $("#add-cart").addClass("btn-theme").removeClass("btn-danger");
+            $("#buy-movie").html(`Buy for $${$("#price").val()}`);
         }
     }
 }
@@ -94,7 +94,7 @@ function appendRowToCartTable(obj){
                         `<tr>` +
                             `<td class="td-poster">` +
                                 `<a href="movie.php?id=${obj["itemId"]}">` +
-                                `<div class="movie-poster-container">` +
+                                `<div class="hover-shadow">` +
                                     `<img class="movie-poster card-img" src="${obj["poster"]}" alt="pic">` +
                                 `</div></a>` +
                             `</td>` +
