@@ -1,5 +1,5 @@
 <?php
-//session_start();
+session_start();
 
 header('Access-Control-Allow-Origin: *');
 include '../backend/dbConnection.php';
@@ -7,9 +7,9 @@ $conn = getDatabaseConnection("movie");
 
 // checks whether admin has logged in
 // if no user is redirected back to index.php
-//if (!isset($_SESSION['adminName'])) {
-//    header('location: ../index.php'); //sends users to login screen if they haven't logged in
-//}
+if (!isset($_SESSION['adminName'])) {
+    header('location: ../index.php'); //sends users to login screen if they haven't logged in
+}
 
 $np = array();
 
