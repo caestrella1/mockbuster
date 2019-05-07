@@ -5,25 +5,28 @@
         <?php include "parts/head.php" ?>
         <title>Log in | <?=$site["title"]?></title>
         <script>
-            function login(){
-                // alert("hello");
-                $.ajax({
-                     method: "POST",
-                        url: "backend/loginProcess.php",
-                    dataType: "json",
-                        data: {
-                            "username":$("#usernameInput").val(),
-                            "password":$("#passwordInput").val()
-                        },
-                     success: function(data, status) {
-                        console.log("loginProcess Data: " + data);
-                    },
-                    complete: function(data, status) { //optional, used for debugging purposes
-                    //   alert(status);
+        function login(){
+            console.log("btn push");
+            $.ajax({
+                method: "POST",
+                url: "backend/loginProcess.php",
+                dataType: "text",
+                data: {
+                    "username":$("#usernameInput").val(),
+                    "password":$("#passwordInput").val(),
+                },
+                success: function(data, status) {
+                    if(data == 'false') {
+                        $('#results').html("Invalid Username/Password!");
                     }
-                }); //ajax 
-            }
+                },
+                complete: function(data, status) { //optional, used for debugging purposes
+                    console.log(status);
+                }
+            }); //ajax 
+        }
         </script>
+    
     </head>
     <body>
         <?php
@@ -44,14 +47,13 @@
                                 <i class="fas fa-info-circle"></i>
                                 Please log in as an administrator to view this page.
                             </p>
-                            
-                            <form method="POST" action="backend/loginProcess.php">
-                                <input id="username" name="username" class="form-control mb-3" type="text" placeholder="Username"/>
-        
-                                <input id="password" name="password" class="form-control mb-3" type="password" placeholder="Password"/>
                         
-                                <input type="submit" value="Log in" class="btn btn-lg btn-block btn-theme" >
-                            </form>
+                            <input id="username" name="username" class="form-control mb-3" type="text" placeholder="Username"/>
+                            <input id="password" name="password" class="form-control mb-3" type="password" placeholder="Password"/>
+                            <div id="results"></div>
+                            <button onclick="login()" class="btn btn-lg btn-block btn-theme">Log in</button>
+                            
+                          
                             
                         </div>
                     </div>
