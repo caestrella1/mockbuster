@@ -25,12 +25,12 @@
                                 Please log in as an administrator to view this page.
                             </p>
                         
-                            <form method="POST" action="backend/loginProcess.php">
+                            <!--<form method="POST" action="backend/loginProcess.php">-->
                                 <input id="username" name="username" class="form-control mb-3" type="text" placeholder="Username"/>
                                 <input id="password" name="password" class="form-control mb-3" type="password" placeholder="Password"/>
                                 <div id="results"></div>
-                                <button type="submit" class="btn btn-lg btn-block btn-theme">Log in</button>
-                            </form>
+                                <button id="submit" class="btn btn-lg btn-block btn-theme">Log in</button>
+                            <!--</form>-->
 
                         </div>
                     </div>
@@ -38,6 +38,29 @@
                 </div>
             </div>
         </main>
+        
+        <script>
+            $('#submit').on('click', function() {
+                console.log('btn push');
+                $.ajax({
+                        method: "POST",
+                        dataType: "text",
+                        data: {
+                            "username": $("#username").val(),
+                            "password": $("#password").val()
+                        },
+                        url: "backend/loginProcess.php",
+                        success: function(data, success) {
+                            if (data == 'true') {
+                                window.location.replace("admin.php");
+                            }
+                            else {
+                                $("#results").html("Invalid Username/Password!");
+                            }
+                        }
+                    });
+            });
+        </script>
         
         <?php include "parts/footer.php" ?>
     </body>
