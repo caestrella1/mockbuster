@@ -146,9 +146,12 @@ function completePurchase(orderTotal) {
         addItemToOrder(cart[i], confirmation, localStorage.grandTotal);
     }
     $("#tableBody").html("");
-    $("#tableBody").html("Success! Your order went through<br>Confirmation Number: " + confirmation);
+    // $("#tableBody").html("Success! Your order went through<br>Confirmation Number: " + confirmation);
     updateCartTotal();
     localStorage.setItem("cart", new Array());
+    alert("Success! Your order went through\nConfirmation Number: " + confirmation);
+    clearCart();
+    window.location.replace("index.php");
 }
 
 function addItemToOrder(id, confirmation, orderTotal) {
@@ -174,6 +177,7 @@ function clearCart() {
     $("#item-table").html("");
     // doesnt update cart total
     updateCart();
+    location.reload();
 }
 
 function applyDiscount() {

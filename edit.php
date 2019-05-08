@@ -46,6 +46,7 @@
                                 var editPage = document.location.href + `?productId=${id}`;
                                 document.location = editPage;
                                 alert('Movie Updated!');
+                                window.location.replace("admin.php");
                             }
                         });
                     }
