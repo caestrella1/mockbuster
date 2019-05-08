@@ -23,6 +23,11 @@
     background-color: <?=$color?> !important; /* bg-info */
 }
 
+.btn-outline-theme.active {
+    color: white !important;
+    background-color: <?=$color?> !important; /* bg-info */
+}
+
 .text-theme {
     color: <?=$color?> !important; /* text-info */
 }

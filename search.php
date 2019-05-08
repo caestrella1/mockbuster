@@ -6,6 +6,8 @@
         <script>
             /* global $ */
             $(function() {
+                $("#search-prompt").removeClass("d-none");
+                
                 $("#btn-search").on("click", function(e) {
                     e.preventDefault();
                     searchMovies();
@@ -66,6 +68,20 @@
             </div>
             
             <div id="search-results" class="row mt-4"></div>
+            
+            <div id="search-prompt" class="row align-items-center d-none">
+                <div class="col-12 text-center">
+                    <h2 class="mb-1">Start Searching</h2>
+                    <p class="text-muted">Search for your favorite movie by name, description, price or rating.</p>
+                </div>
+            </div>
+            
+            <div id="no-results" class="row align-items-center d-none">
+                <div class="col-12 text-center">
+                    <h2 class="mb-1">No Results</h2>
+                    <p class="text-muted">Didn't find what you were looking for? Try adjusting your search query.</p>
+                </div>
+            </div>
             
         </main>
         

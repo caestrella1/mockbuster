@@ -126,7 +126,6 @@ function getMovieInfoAdmin(id) {
 }
 
 function searchMovies() {
-    console.log(`Price: ${$("#filter-price").val()}`);
     $.ajax({
         method: "POST",
         url: "api/filterAll.php",
@@ -138,6 +137,13 @@ function searchMovies() {
         },
         success: function(movies) {
             $("#search-results").html("");
+            if (movies.length == 0) {
+                $("#search-prompt").addClass("d-none");
+                $("#no-results").removeClass("d-none");
+                return;
+            }
+            $("#no-results").addClass("d-none");
+            $("#search-prompt").addClass("d-none");
             movies.forEach(function(m) {
                 let rating = (parseFloat(m.rating) / 2.0).toFixed(1);
                 addMoviePoster("#search-results", m.itemId, m.name, m.poster, rating, m.price); // adds movie to UI
