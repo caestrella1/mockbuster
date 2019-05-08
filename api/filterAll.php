@@ -25,10 +25,10 @@ if($price==0){
 }
 
 if($phrase==""){
-    $sql = "SELECT * FROM itemTable WHERE rating>$rating ORDER BY price $order;";
+    $sql = "SELECT * FROM itemTable WHERE rating>=$rating ORDER BY price $order;";
 }else{
 $sql = "SELECT * FROM itemTable WHERE 
-(name LIKE '%$phrase%' OR description LIKE '%$phrase%') AND (rating>$rating) ORDER BY price $order;";
+(name LIKE '%$phrase%' OR description LIKE '%$phrase%') AND (rating>=$rating) ORDER BY price $order;";
 }
 
 //runs statement
