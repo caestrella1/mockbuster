@@ -4,7 +4,12 @@
         <?php include "parts/head.php" ?>
         <title>Edit Movie | <?=$site["title"]?></title>
         <script>
+            function invalidEntry() {
+                return $('#input-name').val() == '';
+            }
             $(function() {
+                
+                
                 /* global $ getMovieInfoAdmin showMovieImages getRating */
                 let id = parseInt("<?=($_GET['productId']) ? $_GET['productId'] : 'null';?>");
                 if (id) getMovieInfoAdmin(id);
@@ -13,30 +18,37 @@
                 
                 $(document).on("click", "#rating-up, #rating-down", function() {
                     getRating(this.id);
+                    
                 });
                 
                 $("#submit").on("click", function(e) {
                     e.preventDefault();
+                    if(invalidEntry()) {
+                        alert("All Fields Required!");
+                    } 
+                    else {
                     
-                    $.ajax({
-                        type: "GET",
-                        url: "api/addProduct.php",
-                        dataType: "json",
-                        data: {
-                            "id": id,
-                            "name": $("#input-name").val(),
-                            "description" : $("#input-description").val(),
-                            "poster" : $("#input-poster").val(),
-                            "backdrop" : $("#input-backdrop").val(),
-                            "rating" : $("#rating-count").val() * 2,
-                            "price" : parseFloat($("#input-price").val()),
-                            "year": $("#input-date").val(),
-                        },
-                        success: function(id) {
-                            var editPage = document.location.href + `?productId=${id}`;
-                            document.location = editPage;
-                        }
-                    });
+                        $.ajax({
+                            type: "GET",
+                            url: "api/addProduct.php",
+                            dataType: "json",
+                            data: {
+                                "id": id,
+                                "name": $("#input-name").val(),
+                                "description" : $("#input-description").val(),
+                                "poster" : $("#input-poster").val(),
+                                "backdrop" : $("#input-backdrop").val(),
+                                "rating" : $("#rating-count").val() * 2,
+                                "price" : parseFloat($("#input-price").val()),
+                                "year": $("#input-date").val(),
+                            },
+                            success: function(id) {
+                                var editPage = document.location.href + `?productId=${id}`;
+                                document.location = editPage;
+                                alert('Movie Updated!');
+                            }
+                        });
+                    }
                 });
             });
         </script>
