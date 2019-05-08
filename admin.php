@@ -41,27 +41,28 @@
             
             <div class="row">
                 <div class="col-12 mt-4">
-                    <h2>Dashboard</h2>
+                    <h2 class="mb-0">Dashboard</h2>
                     <h4 class="text-upper-sm text-muted">Welcome, <?= $_SESSION['adminName'] ?></h4>
                 </div>
             </div>
            
             <?php include "parts/report.php"; ?>
            
-           <div class="row">
-               <div class="col-12">
-                   <h2 class="mb-0">All Inventory</h2>
-                   <h4 id="movie-count" class="mb-4 text-theme">0 Movies</h4>
-               </div>
-           </div>
-           <div id="all-movies" class="row"></div>
-           
-           <div class="fixed-bottom invisible">
-               <div class="container text-right mb-5">
-                   <a href="edit.php" style="transform:scale(1.35)"
-                   class="btn btn-lg btn-theme rounded-circle visible movie-poster-container mr-2">+</a>
-               </div>
-           </div>
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="mb-0">All Inventory</h2>
+                    <h4 id="movie-count" class="mb-4 text-theme">0 Movies</h4>
+                </div>
+            </div>
+            
+            <div id="all-movies" class="row"></div>
+
+            <div class="fixed-bottom invisible">
+                <div class="container text-right mb-5">
+                    <a href="edit.php" style="transform:scale(1.35)"
+                    class="btn btn-lg btn-theme rounded-circle visible shadow mr-2">+</a>
+                </div>
+            </div>
            
        </main>
 
