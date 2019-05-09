@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <?php session_start(); ?>
         <?php include "parts/head.php" ?>
         <title>Log in | <?=$site["title"]?></title>
     </head>

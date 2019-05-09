@@ -1,5 +1,4 @@
 <!-- Navigation bar used on every page -->
-<?php session_start(); ?>
 <nav class="d-block navbar navbar-expand-md navbar-dark bg-theme sticky-top shadow">
     <div class="container">
         <a class="navbar-brand" href="index.php"><i class="fas fa-ticket-alt mr-2"></i><?=$site["title"]?></a>
