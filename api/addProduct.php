@@ -27,12 +27,13 @@ if ($id == "NaN") {
     $sql .= " VALUES (:name, :desc, :poster, :backdrop, $rating, $price, :year);";
     $stmt = $conn->prepare($sql);
     $stmt->execute($np);
-    echo $conn->lastInsertId();
+    echo json_encode($conn->lastInsertId());
 }
 else {
     $sql = "UPDATE itemTable SET name = :name, description = :desc, poster = :poster, backdrop = :backdrop, 
         rating = $rating, price = $price, yearReleased = :year WHERE itemId = $id";
     $stmt = $conn->prepare($sql);
     $stmt->execute($np);
+    echo json_encode("updated");
 }
 ?>

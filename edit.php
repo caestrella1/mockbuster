@@ -11,17 +11,22 @@
             }
             
             $(function() {
-                
-                
                 /* global $ getMovieInfoAdmin showMovieImages getRating */
                 let id = parseInt("<?=($_GET['productId']) ? $_GET['productId'] : 'null';?>");
                 if (id) getMovieInfoAdmin(id);
                 else getRating();
-                showMovieImages();
+                
+                $("#input-poster").on("change", function() {
+                    let img = $("#input-poster").val();
+                    $("#poster").attr("src", validatePoster(img));
+                });
+                
+                $("#input-backdrop").on("change", function() {
+                    $("#backdrop").css("background-image", `url("${$("#input-backdrop").val()}")`);
+                });
                 
                 $(document).on("click", "#rating-up, #rating-down", function() {
                     getRating(this.id);
-                    
                 });
                 
                 $("#submit").on("click", function(e) {
@@ -39,17 +44,23 @@
                                 "id": id,
                                 "name": $("#input-name").val(),
                                 "description" : $("#input-description").val(),
-                                "poster" : validatePoster(),
+                                "poster" : validatePoster($("#input-poster").val()),
                                 "backdrop" : $("#input-backdrop").val(),
                                 "rating" : $("#rating-count").val() * 2,
                                 "price" : $("#input-price").val(),
                                 "year": $("#input-date").val(),
                             },
-                            success: function(id) {
-                                var editPage = document.location.href + `?productId=${id}`;
-                                document.location = editPage;
-                                alert(`${$("#input-name").val()} has been successfully updated.`);
-                                window.location.replace("admin.php");
+                            success: function(response) {
+                                if (response == "updated") {
+                                    alert(`${$("#input-name").val()} has been successfully updated.`);
+                                }
+                                else {
+                                    let id = response;
+                                    let editPage = document.location.href + `?productId=${id}`;
+                                    document.location = editPage;
+                                    alert(`${$("#input-name").val()} has been successfully added.`);
+                                    window.location.replace("admin.php");
+                                }
                             }
                         });
                     }
