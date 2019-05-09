@@ -2,11 +2,15 @@
 <html>
     <head>
         <?php include "parts/head.php" ?>
+        <?php if(!isset($_SESSION['adminName'])) header('location: login.php'); ?>
         <title>Edit Movie | <?=$site["title"]?></title>
         <script>
             function invalidEntry() {
-                return $('#input-name').val() == '';
+                return $("#input-name").val() == '' || $("#input-description").val() == ''
+                    || $("#input-poster").val() == '' || $("#input-backdrop").val() == ''
+                    || $("#input-date").val() == '' || $("#input-price").val() == '';
             }
+            
             $(function() {
                 
                 
@@ -24,7 +28,7 @@
                 $("#submit").on("click", function(e) {
                     e.preventDefault();
                     if(invalidEntry()) {
-                        alert("All Fields Required!");
+                        alert("Please fill out all of the fields below.");
                     } 
                     else {
                     
@@ -45,7 +49,7 @@
                             success: function(id) {
                                 var editPage = document.location.href + `?productId=${id}`;
                                 document.location = editPage;
-                                alert('Movie Updated!');
+                                alert(`${$("#input-name").val()} has been successfully updated.`);
                                 window.location.replace("admin.php");
                             }
                         });
@@ -71,8 +75,8 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-12 col-lg-4 mb-3 mb-lg-0">
-                                        <div class="hover-shadow mb-3">
-                                            <img id="poster" class="card-img movie-poster rounded-lg">
+                                        <div class="hover-shadow mb-3 bg-theme rounded-lg">
+                                            <img id="poster" class="card-img movie-poster">
                                         </div>
                                         <?php if (isset($_GET['productId'])): ?>
                                         <a id="view-movie" class="btn btn-block btn-info rounded-pill text-light font-weight-bold shadow-sm">

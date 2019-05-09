@@ -55,11 +55,13 @@ function addMovieAdmin(id, url, name, img, rating, price) {
 }
 
 function showMovieImages() {
-    $("#poster").attr("src", $("#input-poster").val());
+    if ($("#input-poster").val() == '') $("#poster").attr("src", "backend/placeholder.png");
+    else $("#poster").attr("src", $("#input-poster").val());
     $("#backdrop").css("background-image", `url(${$("#input-backdrop").val()})`);
     
     $("#input-poster").on("change", function() {
-        $("#poster").attr("src", $("#input-poster").val());
+        if ($("#input-poster").val() == '') $("#poster").attr("src", "backend/placeholder.png");
+        else $("#poster").attr("src", $("#input-poster").val());
     });
     
     $("#input-backdrop").on("change", function() {
