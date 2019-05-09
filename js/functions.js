@@ -6,7 +6,7 @@ function addMoviePoster(section, id, name, image, rating, price) {
     $(`${section}`).append(
         `<div class="col-6 col-md-4 col-lg-3 mb-4">` +
             `<a class="movie" href="movie.php?id=${id}">` +
-                `<div class="hover-shadow position-relative rounded-lg">` +
+                `<div class="bg-dark hover-shadow position-relative rounded-lg">` +
                     `<img src="${image}" class="movie-poster card-img" alt="${name} poster">` +
                     `<div class="badge badge-pill badge-theme movie-rating shadow position-absolute mt-2 mr-2 p-2">` +
                         `<span class="rating">${rating}</span><i class="fas fa-star ml-1"></i>` +
@@ -14,7 +14,7 @@ function addMoviePoster(section, id, name, image, rating, price) {
                 `</div>` +
             `</a>` +
             `<h5 class="movie-title mt-2 mb-0">${name}</h5>` +
-            `<h6 class="text-muted">$${price}</h6>` +
+            `<h6 class="text-muted">$${parseFloat(price).toFixed(2)}</h6>` +
         `</div>`
     );
 }
@@ -23,7 +23,7 @@ function addMoviePoster(section, id, name, image, rating, price) {
 function addMovieAdmin(id, url, name, img, rating, price) {
     $("#all-movies").append(
         `<div class="col-6 col-md-4 col-lg-3 mb-4">` +
-                `<div class="admin-movie hover-shadow position-relative rounded-lg">` +
+                `<div class="admin-movie hover-shadow bg-dark position-relative rounded-lg">` +
                 
                     /* action sheet overlay */
                     `<div class="movie-overlay position-absolute w-100 h-100">` +
@@ -50,18 +50,32 @@ function addMovieAdmin(id, url, name, img, rating, price) {
                 `</div>` +
                 
             `<h5 class="movie-title text-dark mt-2 mb-0">${name}</h5>` +
+            `<h6 class="text-muted">$${parseFloat(price).toFixed(2)}</h6>` +
         `</div>`
     );
 }
 
+function imageExists(url) {
+    var http = new XMLHttpRequest();
+    http.open('HEAD', url, false);
+    http.send();
+    return http.status != 404;
+}
+
+function validatePoster(imageURL) {
+    if (imageURL == '' || !imageExists(imageURL)) {
+        return "backend/placeholder.png";
+    }
+    return imageURL;
+}
+
 function showMovieImages() {
-    if ($("#input-poster").val() == '') $("#poster").attr("src", "backend/placeholder.png");
-    else $("#poster").attr("src", $("#input-poster").val());
+    let img = $("#input-poster").val();
+    $("#poster").attr("src", validatePoster(img));
     $("#backdrop").css("background-image", `url(${$("#input-backdrop").val()})`);
     
     $("#input-poster").on("change", function() {
-        if ($("#input-poster").val() == '') $("#poster").attr("src", "backend/placeholder.png");
-        else $("#poster").attr("src", $("#input-poster").val());
+        $("#poster").attr("src", validatePoster(img));
     });
     
     $("#input-backdrop").on("change", function() {

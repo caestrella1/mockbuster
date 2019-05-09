@@ -81,7 +81,7 @@ function getMovieInfoSingle(id) {
             $("#title").html(movie.name);
             $("#desc").html(movie.description);
             $("#poster").attr("src", movie.poster);
-            $("#backdrop").css("background-image", `url(${movie.backdrop})`);
+            $("#backdrop").css("background-image", `url('${movie.backdrop}')`);
             
             let date = new Date(movie.yearReleased).toLocaleString('en-us', { month: 'long', day: 'numeric', year: 'numeric' });
             $("#date").html(date);

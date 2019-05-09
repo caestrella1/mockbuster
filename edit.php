@@ -6,8 +6,7 @@
         <title>Edit Movie | <?=$site["title"]?></title>
         <script>
             function invalidEntry() {
-                return $("#input-name").val() == '' || $("#input-description").val() == ''
-                    || $("#input-poster").val() == '' || $("#input-backdrop").val() == ''
+                return $("#input-name").val() == '' || $("#input-description").val() == '' || $("#input-backdrop").val() == ''
                     || $("#input-date").val() == '' || $("#input-price").val() == '';
             }
             
@@ -40,10 +39,10 @@
                                 "id": id,
                                 "name": $("#input-name").val(),
                                 "description" : $("#input-description").val(),
-                                "poster" : $("#input-poster").val(),
+                                "poster" : validatePoster(),
                                 "backdrop" : $("#input-backdrop").val(),
                                 "rating" : $("#rating-count").val() * 2,
-                                "price" : parseFloat($("#input-price").val()),
+                                "price" : $("#input-price").val(),
                                 "year": $("#input-date").val(),
                             },
                             success: function(id) {
@@ -75,7 +74,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-12 col-lg-4 mb-3 mb-lg-0">
-                                        <div class="hover-shadow mb-3 bg-theme rounded-lg">
+                                        <div class="hover-shadow mb-3 bg-dark rounded-lg">
                                             <img id="poster" class="card-img movie-poster">
                                         </div>
                                         <?php if (isset($_GET['productId'])): ?>

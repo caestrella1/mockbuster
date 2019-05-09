@@ -103,13 +103,13 @@ function appendRowToCartTable(obj){
                         `<tr>` +
                             `<td class="td-poster">` +
                                 `<a href="movie.php?id=${obj["itemId"]}">` +
-                                `<div class="hover-shadow">` +
+                                `<div class="bg-dark hover-shadow rounded">` +
                                     `<img class="movie-poster card-img" src="${obj["poster"]}" alt="pic">` +
                                 `</div></a>` +
                             `</td>` +
                 
                             `<td class="align-middle">${obj["name"]} (${year})<br>` +
-                            `<span class="font-weight-bold text-success">$${obj["price"]}<span></td>` +
+                            `<span class="font-weight-bold text-success">$${parseFloat(obj["price"]).toFixed(2)}<span></td>` +
                             // `<td class="td-info align-middle">$${obj["price"]}</td>` +
                             
                             `<td class="align-middle text-right">` +
@@ -197,7 +197,6 @@ function applyDiscount() {
         data: { "code": $("#promo-input").val() },
         
         success: function(data,status) {
-            console.log("data: " + data['discount']);
             if(data['discount'] == 0.0){
                 $("#promoOut").html("Invalid Promo Code!");
                 $("#promoOut").addClass("text-danger").removeClass("text-success");
@@ -210,7 +209,7 @@ function applyDiscount() {
                 $("#promoOut").addClass("text-success").removeClass("text-danger");
                 $("#discount-field").removeClass("d-none").addClass("d-flex");
                 
-                localStorage.discountAmount = (localStorage.subtotal * data['discount']);
+                localStorage.discountAmount = (localStorage.subtotal * data['discount']).toFixed(2);
                 $("#discount").html(localStorage.discountAmount);
                 
                 localStorage.grandTotal = (localStorage.subtotal - localStorage.discountAmount).toFixed(2);

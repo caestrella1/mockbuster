@@ -22,8 +22,8 @@
                             <div class="card-body m-3">
                                 <div class="row">
                                     <div class="col-12 col-lg-4 mb-3 mb-lg-0">
-                                        <div class="hover-shadow mb-3">
-                                            <img id="poster" class="card-img movie-poster rounded-lg">
+                                        <div class="hover-shadow mb-3 bg-dark rounded-lg">
+                                            <img id="poster" class="card-img movie-poster">
                                         </div>
                                         <button id="add-cart" class="btn btn-block btn-theme rounded-pill font-weight-bold shadow" onclick="cartAction(<?=$_GET['id'];?>)">
                                             <input id="price" type="hidden" name="price"/>
@@ -48,34 +48,6 @@
             </main>
                 
         </section>
-        
-        <!-- Old movie page (remove later) -->
-        
-        <!--<section id="backdrop" class="movie-backdrop">-->
-        <!--    <div class="backdrop-overlay"></div>-->
-        <!--        <div class="container">-->
-        <!--            <div class="row">-->
-        <!--                <div class="col-12 col-lg-3">-->
-        <!--                    <div class="movie-poster-container mt-5 mb-3">-->
-        <!--                        <img id="poster" class="card-img movie-poster rounded-lg">-->
-        <!--                    </div>-->
-        <!--                    <button id="add-cart" class="btn btn-block btn-info rounded-pill font-weight-bold shadow" onclick="cartAction(<?=$_GET['id'];?>)">-->
-        <!--                        <i class="fas fa-cart-plus mr-2"></i><span id="buy-movie">Add to Cart</span>-->
-        <!--                    </button>-->
-        <!--                </div>-->
-        <!--                <div class="col-12 col-lg-9 my-5 text-light">-->
-        <!--                    <h1 id="title" class="display-4"></h1>-->
-        <!--                    <h5>Release Date: <span id="date" class="text-info"></span></h5>-->
-        <!--                    <h5>-->
-        <!--                        Rating:-->
-        <!--                        <span id="rating" class="text-info"></span>-->
-        <!--                    </h5>-->
-        <!--                    <h3 id="desc-title" class="display-4 mt-4">Overview</h3>-->
-        <!--                    <p id="desc"></p>-->
-        <!--                </div>-->
-        <!--            </div>-->
-        <!--        </div>-->
-        <!--</section>-->
         
         <?php include "parts/footer.php" ?>
     </body>
