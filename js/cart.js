@@ -84,6 +84,15 @@ function getCartPage() {
         /* found in db.js */
         addItemToCartPage(cart[i]);
     }
+    
+    if (cart.length == 0) {
+        $("#cart-populated").addClass("d-none");
+        $("#cart-empty").removeClass("d-none");
+    }
+    else {
+        $("#cart-populated").removeClass("d-none");
+        $("#cart-empty").addClass("d-none");
+    }
 }
 
 function appendRowToCartTable(obj){
@@ -216,20 +225,4 @@ function applyDiscount() {
 function updateCartTotal() {
     $("#subtotal").html("$" + localStorage.subtotal);
     $("#finalPrice").html("$" + localStorage.grandTotal);
-}
-
-function hideCart() {
-    let cart = null;
-    if (!localStorage.getItem("cart"))
-        cart = new Array();
-    else
-        cart = JSON.parse(localStorage.getItem("cart"));
-    if (cart.length == 0 || cart == null){
-        $("#cart-info").hide();
-        // document.getElementById('col-12 col-md-5 col-lg-4').style.display = "hidden";
-    }
-    else{
-        $("#cart-info").show();
-        // document.getElementById('col-12 col-md-5 col-lg-4').style.display = "visible";
-    }
 }
