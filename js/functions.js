@@ -56,10 +56,9 @@ function addMovieAdmin(id, url, name, img, rating, price) {
 }
 
 function imageExists(url) {
-    var http = new XMLHttpRequest();
-    http.open('HEAD', url, false);
-    http.send();
-    return http.status != 404;
+    let image = new Image();
+    image.src = url;
+    return image.width != 0;
 }
 
 function validatePoster(imageURL) {
@@ -71,16 +70,8 @@ function validatePoster(imageURL) {
 
 function showMovieImages() {
     let img = $("#input-poster").val();
-    $("#poster").attr("src", validatePoster(img));
+    $("#poster").attr("src", img);
     $("#backdrop").css("background-image", `url(${$("#input-backdrop").val()})`);
-    
-    $("#input-poster").on("change", function() {
-        $("#poster").attr("src", validatePoster(img));
-    });
-    
-    $("#input-backdrop").on("change", function() {
-        $("#backdrop").css("background-image", `url("${$("#input-backdrop").val()}")`);
-    });
 }
 
 function setStars(rating) {
