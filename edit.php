@@ -6,19 +6,21 @@
         <title>Edit Movie | <?=$site["title"]?></title>
         <script>
             function invalidEntry() {
-                return $("#input-name").val() == '' || $("#input-description").val() == '' || $("#input-backdrop").val() == ''
+                return $("#input-name").val() == '' || $("#input-description").val() == ''
                     || $("#input-date").val() == '' || $("#input-price").val() == '';
             }
             
             $(function() {
-                /* global $ getMovieInfoAdmin showMovieImages getRating */
+                /* global $ getMovieInfoAdmin getRating */
                 let id = parseInt("<?=($_GET['productId']) ? $_GET['productId'] : 'null';?>");
                 if (id) getMovieInfoAdmin(id);
-                else getRating();
+                else {
+                    getRating();
+                    setPoster($("#input-poster").val());
+                }
                 
                 $("#input-poster").on("change", function() {
-                    let img = $("#input-poster").val();
-                    $("#poster").attr("src", validatePoster(img));
+                    setPoster($("#input-poster").val());
                 });
                 
                 $("#input-backdrop").on("change", function() {
@@ -44,7 +46,7 @@
                                 "id": id,
                                 "name": $("#input-name").val(),
                                 "description" : $("#input-description").val(),
-                                "poster" : validatePoster($("#input-poster").val()),
+                                "poster" : setPoster($("#input-poster").val()),
                                 "backdrop" : $("#input-backdrop").val(),
                                 "rating" : $("#rating-count").val() * 2,
                                 "price" : $("#input-price").val(),

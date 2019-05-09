@@ -111,14 +111,17 @@ function getMovieInfoAdmin(id) {
             $("#movie-id").html("Movie ID: " + id);
             $("#input-name").val(movie.name);
             $("#input-description").val(movie.description);
-            $("#input-poster").val(movie.poster);
+            
+            let placeholder = "backend/placeholder.png";
+            $("#input-poster").val(movie.poster == placeholder ? "" : movie.poster);
+            $("#poster").attr("src", movie.poster);
             $("#input-backdrop").val(movie.backdrop);
+            
             $("#input-date").val(movie.yearReleased);
             $("#input-price").val(movie.price);
             $("#rating-count").val(movie.rating / 2);
             getRating();
             
-            showMovieImages();
             $("#view-movie").attr("href", `movie.php?id=${id}`);
             $("button[name='id']").val(id);
         }

@@ -55,23 +55,25 @@ function addMovieAdmin(id, url, name, img, rating, price) {
     );
 }
 
-function imageExists(url) {
+/* Test if the poster loads, if not, load the placeholder */
+function setPoster(url) {
+    let placeholder = "backend/placeholder.png";
+    if (url == placeholder) {
+        $("#input-poster").val("");
+        return placeholder;
+    }
     let image = new Image();
     image.src = url;
-    return image.width != 0;
-}
-
-function validatePoster(imageURL) {
-    if (imageURL == '' || !imageExists(imageURL)) {
-        return "backend/placeholder.png";
-    }
-    return imageURL;
-}
-
-function showMovieImages() {
-    let img = $("#input-poster").val();
-    $("#poster").attr("src", img);
-    $("#backdrop").css("background-image", `url(${$("#input-backdrop").val()})`);
+    
+    image.onload = function() {
+        $("#poster").attr("src", url);
+    };
+    
+    image.onerror = function() {
+        $("#poster").attr("src", placeholder);
+    };
+    
+    return $("#poster").attr("src");
 }
 
 function setStars(rating) {
