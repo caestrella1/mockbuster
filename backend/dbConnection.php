@@ -8,7 +8,7 @@
         
         //checks whether the URL contains "herokuapp" (using Heroku)
         // need this to be able to run in HEROKU
-        if(strpos($_SERVER['HTTP_HOST'], 'herokuapp') !== false || strpos($_SERVER['HTTP_HOST'], getenv("CLEARDB_DATABASE_URL")) !== false) {
+        if(strpos($_SERVER['HTTP_HOST'], 'herokuapp') !== false || strpos($_SERVER['HTTP_HOST'], getenv("CUSTOM_URL")) !== false) {
             $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
             $host = $url["host"];
             $dbName = substr($url["path"], 1);
